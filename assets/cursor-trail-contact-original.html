@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cursor Trail Contact</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400&display=swap">
+
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  main.contact-section {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+    overflow: hidden;
+    background: #070708;
+    color: #fff;
+    font-family: 'Satoshi', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .shader-wrapper {
+    position: absolute;
+    inset: 0;
+  }
+
+  .shader-wrapper canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .contact-invite {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1.5rem;
+    text-align: center;
+  }
+
+  .contact-invite h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  @media (min-width: 640px) {
+    .contact-invite h2 {
+      font-size: 1.875rem;
+    }
+  }
+
+  .contact-cta {
+    display: inline-block;
+    margin-top: 1.25rem;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    font-size: clamp(2.2rem, 7vw, 6rem);
+    line-height: 1.05;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .contact-cta:hover {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .contact-cta .underline {
+    display: block;
+    margin: 0.5rem auto 0;
+    height: 3px;
+    width: 0;
+    background: rgba(255, 255, 255, 0.7);
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .contact-cta:hover .underline {
+    width: 100%;
+  }
+
+  footer.contact-footer {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0 1.5rem 2.25rem;
+    font-family: 'Geist Mono', ui-monospace, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  @media (min-width: 640px) {
+    footer.contact-footer {
+      padding: 0 3rem 2.25rem;
+    }
+  }
+
+  .contact-socials {
+    display: flex;
+    gap: 1.75rem;
+  }
+
+  .contact-socials a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .contact-socials a:hover {
+    color: #fff;
+  }
+
+  .contact-hint {
+    margin: 0;
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    .contact-hint {
+      display: block;
+    }
+  }
+
+  /* Reveal-on-load animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: reveal-up 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: var(--reveal-delay, 0s);
+  }
+
+  @keyframes reveal-up {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<main class="contact-section">
+
+  <div class="shader-wrapper" aria-hidden="true">
+    <canvas id="trail-canvas"></canvas>
+  </div>
+
+  <section class="contact-invite">
+    <h2 class="reveal" style="--reveal-delay: 0.1s">Got something to make?</h2>
+    <a class="contact-cta reveal" style="--reveal-delay: 0.25s" href="#">
+      IntelliTech
+      <span class="underline"></span>
+    </a>
+  </section>
+
+  <footer class="contact-footer reveal" style="--reveal-delay: 0.45s">
+    <div class="contact-socials">
+      <a href="#">Instagram</a>
+      <a href="#">Are.na</a>
+      <a href="#">GitHub</a>
+    </div>
+    <p class="contact-hint">( move your cursor )</p>
+  </footer>
+
+</main>
+
+<script type="module">
+  import { createShader, isWebGPUSupported } from "https://esm.sh/shaders@3.2.464/js";
+
+  const canvas = document.getElementById("trail-canvas");
+
+  const preset = {
+    components: [
+      {
+        type: "DotGrid",
+        id: "trailDots",
+        props: {
+          density: 40,
+          dotSize: {
+            type: "map",
+            source: "trailFlow",
+            channel: "alpha",
+            inputMax: 1,
+            inputMin: 0,
+            outputMax: 1,
+            outputMin: 0
+          },
+          twinkle: 0.9,
+          visible: false
+        }
+      },
+      {
+        type: "ChromaFlow",
+        id: "trailFlow",
+        props: {
+          intensity: 1.4,
+          radius: 2.9,
+          visible: false
+        }
+      },
+      {
+        type: "LinearGradient",
+        props: {
+          colorA: "#1e1e1f",
+          colorB: "#070708",
+          colorSpace: "hsl",
+          end: { x: 1, y: 0 },
+          start: { x: 0, y: 1 }
+        }
+      },
+      {
+        type: "LinearGradient",
+        props: {
+          colorA: "#000000",
+          colorB: "#ffffff",
+          colorSpace: "hsl",
+          end: { x: 1, y: 0 },
+          maskSource: "trailDots",
+          start: { x: 0, y: 1 }
+        }
+      },
+      {
+        type: "CursorRipples",
+        props: {}
+      },
+      {
+        type: "FilmGrain",
+        props: {
+          strength: 0.1
+        }
+      }
+    ]
+  };
+
+  if (isWebGPUSupported()) {
+    createShader(canvas, preset, {
+      disableTelemetry: true,
+      observeElement: true,
+      onError: (reason) => {
+        console.warn("Shader background unavailable, falling back to static gradient:", reason);
+      }
+    }).catch((err) => {
+      console.warn("Shader background failed to initialize, falling back to static gradient:", err);
+    });
+  } else {
+    console.info("WebGPU not supported — showing static gradient background.");
+  }
+</script>
+
+</body>
+</html>

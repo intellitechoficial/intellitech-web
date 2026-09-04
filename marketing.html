@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing — IntelliTech</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Work+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@600&display=swap');
+
+  :root{
+    --paper:#faf9f6;
+    --ink:#111111;
+    --muted:#55524d;
+    --blue:#49c9ea;
+    --pink:#ef2f6e;
+    --yellow:#f4b93c;
+    --green:#22a37a;
+    --hair:rgba(17,17,17,0.14);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(circle, rgba(17,17,17,0.07) 1px, transparent 1.4px) 0 0/26px 26px,
+      var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+  .pixel{ font-family:'Silkscreen', monospace; }
+  .hand{ font-family:'Caveat', cursive; }
+
+  /* ---- header ---- */
+  header{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:16px;
+    max-width:1180px;
+    margin:0 auto;
+    padding:22px 24px;
+  }
+  @media (min-width:760px){ header{ padding:30px 44px; } }
+
+  .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .brand-mark{
+    width:30px; height:30px;
+    border-radius:9px;
+    background:linear-gradient(160deg, var(--pink), var(--blue));
+    border:2px solid var(--ink);
+  }
+  .brand-name{ font-weight:800; font-size:15px; letter-spacing:-0.01em; }
+
+  nav{ display:none; gap:22px; }
+  @media (min-width:700px){ nav{ display:flex; } }
+  nav a{
+    font-family:'JetBrains Mono', ui-monospace, monospace;
+    font-size:12px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+  }
+  nav a:hover{ color:var(--ink); }
+
+  .back{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:9px 16px;
+    border-radius:999px;
+    border:2px solid var(--ink);
+    background:#fff;
+    font-family:'JetBrains Mono', ui-monospace, monospace;
+    font-size:11px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--ink);
+    box-shadow:3px 3px 0 var(--ink);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .back:hover{ transform:translate(1px,1px); box-shadow:2px 2px 0 var(--ink); }
+  .back svg{ width:13px; height:13px; }
+
+  /* ---- hero ---- */
+  .hero{
+    position:relative;
+    max-width:1180px;
+    margin:20px auto 0;
+    padding:40px 24px 90px;
+    text-align:center;
+  }
+  @media (min-width:760px){ .hero{ padding:50px 44px 130px; } }
+
+  .tag-row{
+    display:flex; justify-content:center; align-items:flex-start;
+    gap:18px;
+    flex-wrap:wrap;
+    margin-bottom:10px;
+  }
+  .tag{
+    display:inline-block;
+    padding:9px 16px;
+    border-radius:8px;
+    border:2px solid var(--ink);
+    font-family:'JetBrains Mono', ui-monospace, monospace;
+    font-size:11px;
+    font-weight:500;
+    letter-spacing:0.02em;
+    box-shadow:3px 3px 0 var(--ink);
+  }
+  .tag.green{ background:var(--green); color:#fff; transform:rotate(-4deg); }
+  .tag.yellow{ background:var(--yellow); color:var(--ink); transform:rotate(3deg); }
+
+  .kicker{
+    margin:26px 0 0;
+    font-family:'Caveat', cursive;
+    font-size:26px;
+    color:var(--muted);
+  }
+  .hero h1{
+    margin:2px 0 0;
+    font-size:56px;
+    line-height:1;
+    letter-spacing:0.01em;
+  }
+  @media (min-width:640px){ .hero h1{ font-size:96px; } }
+
+  .status{
+    display:inline-flex; align-items:center; gap:8px;
+    margin:22px 0 0;
+    font-family:'JetBrains Mono', ui-monospace, monospace;
+    font-size:12px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .status .dot{
+    width:9px; height:9px;
+    border-radius:50%;
+    background:var(--blue);
+    box-shadow:0 0 0 3px rgba(73,201,234,0.25);
+  }
+
+  .hero p.lead{
+    max-width:44ch;
+    margin:22px auto 0;
+    font-size:17px;
+    line-height:1.6;
+    color:var(--muted);
+  }
+
+  .cta-pill{
+    margin-top:32px;
+    display:inline-flex; align-items:center; gap:12px;
+    padding:8px 22px 8px 8px;
+    border-radius:999px;
+    background:var(--ink);
+    color:#fff;
+    font-weight:700;
+    font-size:14px;
+    text-decoration:none;
+  }
+  .cta-pill .badge{
+    width:32px; height:32px;
+    border-radius:50%;
+    background:var(--blue);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--ink);
+  }
+  .cta-pill .badge svg{ width:15px; height:15px; }
+
+  /* ---- bento services ---- */
+  .bento-wrap{ max-width:1180px; margin:0 auto; padding:0 24px 90px; }
+  @media (min-width:760px){ .bento-wrap{ padding:0 44px 120px; } }
+
+  .section-kicker{
+    text-align:center;
+    font-family:'Caveat', cursive;
+    font-size:24px;
+    color:var(--muted);
+    margin:0 0 4px;
+  }
+  .bento-wrap h2.pixel{
+    text-align:center;
+    margin:0 0 46px;
+    font-size:30px;
+    letter-spacing:0.01em;
+  }
+  @media (min-width:640px){ .bento-wrap h2.pixel{ font-size:42px; } }
+
+  .bento-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+  @media (min-width:640px){ .bento-grid{ grid-template-columns:1fr 1fr; } }
+  @media (min-width:980px){ .bento-grid{ grid-template-columns:repeat(3,1fr); } }
+
+  .bento-item{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:10px;
+    padding:22px;
+    border-radius:14px;
+    border:2px solid var(--ink);
+    box-shadow:4px 4px 0 var(--ink);
+    font-weight:700;
+    font-size:16px;
+    text-decoration:none;
+    color:var(--ink);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .bento-item:hover{ transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--ink); }
+  .bento-item span.emoji{ font-size:20px; }
+  .bento-item.c-blue{ background:var(--blue); }
+  .bento-item.c-pink{ background:var(--pink); color:#fff; }
+  .bento-item.c-yellow{ background:var(--yellow); }
+  .bento-item.c-green{ background:var(--green); color:#fff; }
+  .bento-item.c-paper{ background:#fff; }
+  .bento-item.c-ink{ background:var(--ink); color:#fff; }
+
+  /* ---- featured split panels ---- */
+  .featured{ max-width:1180px; margin:0 auto; padding:0 24px 100px; }
+  @media (min-width:760px){ .featured{ padding:0 44px 130px; } }
+
+  .panel{
+    display:flex;
+    flex-direction:column;
+    border:2px solid var(--ink);
+    border-radius:18px;
+    overflow:hidden;
+    margin-bottom:20px;
+  }
+  @media (min-width:760px){ .panel{ flex-direction:row; min-height:340px; } }
+
+  .panel-copy{
+    flex:1;
+    padding:40px 32px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .panel-tab{
+    display:inline-flex; align-items:center; gap:8px;
+    align-self:flex-start;
+    margin:-40px -32px 24px;
+    padding:10px 18px;
+    font-family:'JetBrains Mono', ui-monospace, monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    background:rgba(255,255,255,0.55);
+    border-bottom:2px solid var(--ink);
+    border-right:2px solid var(--ink);
+    border-radius:0 0 14px 0;
+  }
+  .panel-copy h3{ margin:0; font-size:32px; letter-spacing:-0.01em; }
+  .panel-copy p{ margin:14px 0 0; font-size:15px; line-height:1.6; max-width:34ch; }
+  .panel-copy .view{
+    margin-top:22px;
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'JetBrains Mono', ui-monospace, monospace;
+    font-size:12px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    text-decoration:underline;
+  }
+
+  .panel-photo{
+    flex:1;
+    min-height:220px;
+    background-size:cover;
+    background-position:center;
+  }
+
+  .panel.blue .panel-copy{ background:var(--blue); }
+  .panel.ink .panel-copy{ background:var(--ink); color:#fff; }
+  .panel.ink .panel-tab{ background:rgba(255,255,255,0.12); }
+  .panel.pink .panel-copy{ background:var(--pink); color:#fff; }
+
+  /* ---- closing ---- */
+  .closing{
+    max-width:1180px;
+    margin:0 auto 100px;
+    padding:70px 32px;
+    border-radius:22px;
+    border:2px solid var(--ink);
+    background:var(--ink);
+    color:#fff;
+    text-align:center;
+  }
+  @media (min-width:760px){ .closing{ margin:0 44px 130px; } }
+  .closing h2{ margin:0; font-size:28px; font-weight:800; letter-spacing:-0.01em; }
+  .closing p{ margin:14px auto 0; max-width:42ch; color:rgba(255,255,255,0.75); font-size:15px; line-height:1.6; }
+  .closing .cta-pill{ background:var(--pink); }
+  .closing .cta-pill .badge{ background:#fff; }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="brand" href="intellitech-build-v2.html">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span class="brand-name">IntelliTech</span>
+  </a>
+  <nav>
+    <a href="#servicios">Servicios</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+  <a class="back" href="intellitech-build-v2.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Inicio
+  </a>
+</header>
+
+<section class="hero">
+  <div class="tag-row">
+    <span class="tag green">Especialistas en Marketing con IA</span>
+    <span class="tag yellow">Resultados medibles</span>
+  </div>
+  <p class="kicker">nuestro servicio de</p>
+  <h1 class="pixel">MARKETING</h1>
+  <p class="status"><span class="dot"></span> Disponible para nuevos proyectos</p>
+  <p class="lead">Estrategias creativas y efectivas para hacer crecer tu marca, respaldadas por IA de principio a fin.</p>
+  <a class="cta-pill" href="#contacto">
+    <span class="badge" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7M20 12H4"/></svg>
+    </span>
+    Hablar con nosotros
+  </a>
+</section>
+
+<section class="bento-wrap" id="servicios">
+  <p class="section-kicker hand">todo lo que incluye</p>
+  <h2 class="pixel">SERVICIOS</h2>
+  <div class="bento-grid">
+    <a class="bento-item c-blue" href="#">Re-Branding <span class="emoji">🔄</span></a>
+    <a class="bento-item c-ink" href="#">Logos <span class="emoji">✦</span></a>
+    <a class="bento-item c-pink" href="#">Vídeos con IA <span class="emoji">🎬</span></a>
+    <a class="bento-item c-yellow" href="#">Imágenes con IA <span class="emoji">🖼️</span></a>
+    <a class="bento-item c-green" href="#">Redes Sociales <span class="emoji">📱</span></a>
+    <a class="bento-item c-paper" href="#">Diseño de tarjetas <span class="emoji">🪪</span></a>
+  </div>
+</section>
+
+<section class="featured">
+  <div class="panel blue">
+    <div class="panel-copy">
+      <span class="panel-tab">Servicio 01</span>
+      <h3>Vídeos con IA</h3>
+      <p>Vídeos generados con IA, listos para campañas y redes sociales, sin rodajes ni edición manual.</p>
+      <a class="view" href="#contacto">Hablar de este servicio →</a>
+    </div>
+    <div class="panel-photo" style="background-image:url('https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=800&auto=format&fit=crop')"></div>
+  </div>
+
+  <div class="panel ink">
+    <div class="panel-copy">
+      <span class="panel-tab">Servicio 02</span>
+      <h3>Redes Sociales</h3>
+      <p>Gestionamos tu presencia online con contenido pensado para convertir, no solo para publicar.</p>
+      <a class="view" href="#contacto">Hablar de este servicio →</a>
+    </div>
+    <div class="panel-photo" style="background-image:url('https://images.unsplash.com/photo-1724862936518-ae7fcfc052c1?q=80&w=800&auto=format&fit=crop')"></div>
+  </div>
+
+  <div class="panel pink">
+    <div class="panel-copy">
+      <span class="panel-tab">Servicio 03</span>
+      <h3>Re-Branding</h3>
+      <p>Renovamos tu marca y posicionamiento para que conecte con quien la ve hoy, no con quien la veía hace 5 años.</p>
+      <a class="view" href="#contacto">Hablar de este servicio →</a>
+    </div>
+    <div class="panel-photo" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop')"></div>
+  </div>
+</section>
+
+<section class="closing" id="contacto">
+  <h2 class="pixel" style="font-size:26px;">¿HABLAMOS DE TU MARCA?</h2>
+  <p>Cuéntanos qué necesitas y te decimos cómo lo abordaríamos, sin compromiso.</p>
+  <a class="cta-pill" href="#">
+    <span class="badge" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7M20 12H4"/></svg>
+    </span>
+    Contactar
+  </a>
+</section>
+
+<div class="chat-widget" id="chatWidget">
+  <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Contacto rápido">
+    <div class="chat-panel-head">
+      <div class="chat-panel-avatar" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7M20 12H4"/></svg>
+      </div>
+      <div class="chat-panel-title">
+        <strong>IntelliTech</strong>
+        <span>Solemos responder el mismo día</span>
+      </div>
+      <button class="chat-panel-close" id="chatClose" aria-label="Cerrar chat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="chat-panel-body">
+      <div class="chat-msg">👋 ¡Hola! Cuéntanos qué necesitas y te contestamos lo antes posible.</div>
+    </div>
+    <a class="chat-panel-cta" href="mailto:hola@intellitech.com">
+      Escribir por email
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+  <button class="chat-bubble" id="chatToggle" aria-label="Abrir chat" aria-expanded="false">
+    <span class="chat-tooltip">¿Hablamos de tu proyecto?</span>
+    <svg class="ic ic-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+    <svg class="ic ic-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+</div>
+<style>
+  .chat-widget{ position:fixed; right:22px; bottom:22px; z-index:999; }
+
+  .chat-bubble{
+    position:relative;
+    width:56px; height:56px; border-radius:50%;
+    background:var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; border:2px solid var(--ink); cursor:pointer;
+    box-shadow:4px 4px 0 var(--pink);
+    animation:chatbounce 3.4s ease-in-out infinite;
+  }
+  .chat-widget.open .chat-bubble{ animation:none; }
+  .chat-bubble .ic{ width:23px; height:23px; position:absolute; transition:opacity .2s ease, transform .25s cubic-bezier(.34,1.56,.64,1); }
+  .chat-bubble .ic-close{ opacity:0; transform:rotate(-45deg) scale(.6); }
+  .chat-bubble .ic-chat{ opacity:1; transform:rotate(0) scale(1); }
+  .chat-widget.open .chat-bubble .ic-chat{ opacity:0; transform:rotate(45deg) scale(.6); }
+  .chat-widget.open .chat-bubble .ic-close{ opacity:1; transform:rotate(0) scale(1); }
+  @keyframes chatbounce{ 0%,78%,100%{ transform:translateY(0); } 88%{ transform:translateY(-9px); } }
+
+  .chat-tooltip{
+    position:absolute; right:68px; bottom:9px; top:auto;
+    background:#fff; color:var(--ink);
+    padding:9px 15px; border-radius:11px;
+    font-family:'Work Sans', sans-serif;
+    font-size:12.5px; font-weight:700; white-space:nowrap;
+    box-shadow:3px 3px 0 var(--ink);
+    border:2px solid var(--ink);
+    opacity:0; transform:translateX(6px);
+    transition:opacity .2s ease, transform .2s ease;
+    pointer-events:none;
+  }
+  .chat-bubble:hover .chat-tooltip{ opacity:1; transform:translateX(0); }
+  .chat-widget.open .chat-tooltip{ opacity:0 !important; }
+
+  .chat-panel{
+    position:absolute; right:0; bottom:70px;
+    width:min(320px, calc(100vw - 44px));
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    border:2px solid var(--ink);
+    box-shadow:6px 6px 0 var(--ink);
+    opacity:0; transform:translateY(14px) scale(.96);
+    transform-origin:bottom right;
+    pointer-events:none;
+    transition:opacity .28s cubic-bezier(.16,1,.3,1), transform .28s cubic-bezier(.16,1,.3,1);
+  }
+  .chat-widget.open .chat-panel{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+
+  .chat-panel-head{
+    display:flex; align-items:center; gap:10px;
+    padding:16px 16px;
+    background:var(--pink);
+    color:#fff;
+    border-bottom:2px solid var(--ink);
+  }
+  .chat-panel-avatar{
+    width:34px; height:34px; border-radius:50%;
+    background:rgba(255,255,255,0.25);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .chat-panel-avatar svg{ width:16px; height:16px; }
+  .chat-panel-title{ flex:1; min-width:0; }
+  .chat-panel-title strong{ display:block; font-size:14px; }
+  .chat-panel-title span{ display:block; font-size:11px; opacity:.9; margin-top:1px; }
+  .chat-panel-close{
+    width:26px; height:26px; border-radius:50%; flex-shrink:0;
+    background:rgba(255,255,255,0.2); border:none; color:#fff; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:background .15s ease;
+  }
+  .chat-panel-close:hover{ background:rgba(255,255,255,0.35); }
+  .chat-panel-close svg{ width:13px; height:13px; }
+
+  .chat-panel-body{ padding:18px 16px; background:#faf9f6; }
+  .chat-msg{
+    display:inline-block;
+    background:#fff; border:1.5px solid var(--ink);
+    border-radius:4px 14px 14px 14px;
+    padding:12px 14px;
+    font-family:'Work Sans', sans-serif;
+    font-size:13px; line-height:1.5; color:var(--ink);
+  }
+
+  .chat-panel-cta{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    margin:0; padding:14px 16px;
+    background:var(--ink); color:#fff;
+    font-family:'Work Sans', sans-serif; font-weight:700; font-size:13.5px;
+    text-decoration:none;
+    border-top:2px solid var(--ink);
+  }
+  .chat-panel-cta:hover{ background:#1a1728; }
+
+  @media (max-width:480px){
+    .chat-widget{ right:16px; bottom:16px; }
+    .chat-panel{ right:-4px; }
+  }
+  @media (prefers-reduced-motion: reduce){ .chat-bubble{ animation:none; } }
+</style>
+<script>
+  (function(){
+    var widget = document.getElementById('chatWidget');
+    var toggle = document.getElementById('chatToggle');
+    var close = document.getElementById('chatClose');
+    if (!widget || !toggle) return;
+    function setOpen(open){
+      widget.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    toggle.addEventListener('click', function(){ setOpen(!widget.classList.contains('open')); });
+    if (close) close.addEventListener('click', function(){ setOpen(false); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') setOpen(false); });
+    document.addEventListener('click', function(e){
+      if (widget.classList.contains('open') && !widget.contains(e.target)) setOpen(false);
+    });
+  })();
+</script>
+
+</body>
+</html>

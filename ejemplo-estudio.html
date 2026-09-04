@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estudio Marfil — Ejemplo IntelliTech</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400&family=Work+Sans:wght@400;500;600&display=swap');
+  :root{
+    --bg:#efeae2; --panel:#fff; --ink:#1c1a17; --muted:#7a746a;
+    --line:rgba(28,26,23,0.12);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ink);font-family:'Work Sans',sans-serif;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .serif{font-family:'Fraunces',serif;}
+
+  .example-flag{
+    position:fixed; top:14px; left:50%; transform:translateX(-50%); z-index:999;
+    display:flex; align-items:center; gap:10px;
+    background:var(--ink); color:#fff; padding:8px 16px; border-radius:999px;
+    font-size:12px; font-weight:600; text-decoration:none;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+  }
+  .example-flag svg{ width:13px; height:13px; }
+
+  header{ display:flex; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto; padding:60px 32px 40px; border-bottom:1px solid var(--line); }
+  .brand{ font-family:'Fraunces',serif; font-size:20px; letter-spacing:.02em; }
+  nav{ display:none; gap:30px; font-size:13px; color:var(--muted); }
+  @media (min-width:700px){ nav{ display:flex; } }
+  .num{ font-size:12px; color:var(--muted); }
+
+  .hero{ max-width:1200px; margin:0 auto; padding:70px 32px 0; }
+  .hero h1{ font-family:'Fraunces',serif; font-weight:400; font-size:40px; line-height:1.15; max-width:16ch; margin:0; }
+  @media (min-width:640px){ .hero h1{ font-size:58px; } }
+  .hero-row{ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:24px; margin-top:26px; }
+  .hero-row p{ max-width:34ch; color:var(--muted); font-size:15px; line-height:1.6; margin:0; }
+
+  .hero-photo{ margin-top:50px; height:420px; border-radius:2px; background-size:cover; background-position:center; }
+
+  .work{ max-width:1200px; margin:0 auto; padding:100px 32px; }
+  .work-head{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:44px; }
+  .work-head h2{ font-family:'Fraunces',serif; font-weight:400; font-size:28px; margin:0; }
+  .work-head span{ font-size:12.5px; color:var(--muted); }
+  .work-list{ border-top:1px solid var(--line); }
+  .work-item{ display:flex; flex-wrap:wrap; align-items:baseline; gap:16px; justify-content:space-between; padding:26px 0; border-bottom:1px solid var(--line); transition:padding-left .3s ease; }
+  .work-item:hover{ padding-left:10px; }
+  .work-item h3{ font-family:'Fraunces',serif; font-weight:400; font-size:22px; margin:0; }
+  .work-item .meta{ display:flex; gap:28px; font-size:12.5px; color:var(--muted); }
+
+  .principles{ max-width:1200px; margin:0 auto; padding:0 32px 110px; display:grid; grid-template-columns:1fr; gap:28px; }
+  @media (min-width:760px){ .principles{ grid-template-columns:repeat(3,1fr); } }
+  .principle .n{ font-family:'Fraunces',serif; font-style:italic; color:var(--muted); font-size:14px; }
+  .principle h4{ font-size:16px; margin:10px 0 8px; }
+  .principle p{ margin:0; font-size:13.5px; color:var(--muted); line-height:1.6; }
+
+  footer{ text-align:center; padding:50px 24px; color:var(--muted); font-size:12.5px; border-top:1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<a class="example-flag" href="creacion-webs.html">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+  Ejemplo de IntelliTech — Volver
+</a>
+
+<header>
+  <span class="brand">Estudio Marfil</span>
+  <nav>
+    <a href="#">Proyectos</a>
+    <a href="#">Estudio</a>
+    <a href="#">Contacto</a>
+  </nav>
+  <span class="num">Madrid, ES</span>
+</header>
+
+<section class="hero">
+  <h1 class="serif">Arquitectura de interiores con carácter propio.</h1>
+  <div class="hero-row">
+    <p>Diseñamos espacios residenciales y comerciales que envejecen bien: materiales nobles, luz natural y detalles que se notan con el tiempo.</p>
+  </div>
+  <div class="hero-photo" style="background-image:url('https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?q=80&w=1200&auto=format&fit=crop')"></div>
+</section>
+
+<section class="work">
+  <div class="work-head">
+    <h2 class="serif">Proyectos seleccionados</h2>
+    <span>2023 — 2026</span>
+  </div>
+  <div class="work-list">
+    <div class="work-item">
+      <h3 class="serif">Casa Retiro</h3>
+      <div class="meta"><span>Residencial</span><span>Sierra de Madrid</span><span>2026</span></div>
+    </div>
+    <div class="work-item">
+      <h3 class="serif">Oficinas Lienzo</h3>
+      <div class="meta"><span>Comercial</span><span>Barcelona</span><span>2025</span></div>
+    </div>
+    <div class="work-item">
+      <h3 class="serif">Ático Almendra</h3>
+      <div class="meta"><span>Residencial</span><span>Madrid</span><span>2025</span></div>
+    </div>
+    <div class="work-item">
+      <h3 class="serif">Café Cardo</h3>
+      <div class="meta"><span>Hostelería</span><span>Valencia</span><span>2024</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="principles">
+  <div class="principle"><span class="n">01</span><h4>Materiales honestos</h4><p>Priorizamos piedra, madera maciza y metal envejecido frente a acabados sintéticos.</p></div>
+  <div class="principle"><span class="n">02</span><h4>Luz como material</h4><p>Cada proyecto parte del estudio solar del espacio antes de tocar un solo tabique.</p></div>
+  <div class="principle"><span class="n">03</span><h4>Menos, mejor hecho</h4><p>Preferimos pocos elementos bien resueltos a una decoración excesiva.</p></div>
+</section>
+
+<footer>Estudio Marfil — ejemplo de web corporativa creado por IntelliTech.</footer>
+
+</body>
+</html>
