@@ -617,10 +617,10 @@
     color:var(--s3-ink);
     border-radius:28px;
     border:1px solid rgba(20,15,30,0.06);
-    padding:110px 24px 90px;
+    padding:90px 24px 90px;
     text-align:center;
   }
-  @media (min-width:760px){ .s3-box{ padding:150px 44px 130px; } }
+  @media (min-width:760px){ .s3-box{ padding:120px 44px 130px; } }
   .s3-box h2{
     margin:0;
     font-family:'Work Sans', sans-serif;
@@ -642,8 +642,8 @@
     position:relative;
     width:100%;
     max-width:min(96vw, 1400px);
-    height:340px;
-    margin:70px auto 0;
+    height:380px;
+    margin:95px auto 0;
     perspective:1500px;
   }
   .carousel-glow{
@@ -703,15 +703,15 @@
   .carousel-nav.prev{ left:0; }
   .carousel-nav.next{ right:0; }
   @media (min-width:820px){
-    .carousel-nav.prev{ left:calc(50% - 254px); }
-    .carousel-nav.next{ right:calc(50% - 254px); }
+    .carousel-nav.prev{ left:calc(50% - 296px); }
+    .carousel-nav.next{ right:calc(50% - 296px); }
   }
   .carousel-nav svg{ width:18px; height:18px; }
   .carousel-hit{
     position:absolute;
     top:50%; left:50%;
-    width:380px; height:280px;
-    margin:-140px 0 0 -190px;
+    width:440px; height:320px;
+    margin:-160px 0 0 -220px;
     border-radius:14px;
     z-index:10;
     pointer-events:none;
@@ -720,8 +720,8 @@
   .carousel-card{
     position:absolute;
     top:0; left:0;
-    width:380px; height:280px;
-    margin:-140px 0 0 -190px;
+    width:440px; height:320px;
+    margin:-160px 0 0 -220px;
     border-radius:14px;
     background-color:var(--accent-2);
     background-size:cover;
@@ -971,7 +971,7 @@
     var cards = ring.querySelectorAll('.carousel-card');
     var n = cards.length;
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var radius = Math.min(680, Math.max(420, ring.parentElement.getBoundingClientRect().width * 0.5));
+    var radius = Math.min(720, Math.max(460, ring.parentElement.getBoundingClientRect().width * 0.52));
     var cardAngles = [];
     for (var i = 0; i < n; i++){
       var cardAngle = (360 / n) * i;
