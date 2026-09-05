@@ -52,7 +52,7 @@
 
   .brand{ display:flex; align-items:center; gap:30px; }
   .brand-logo{
-    width:62px; height:62px;
+    width:72px; height:72px;
     flex-shrink:0;
     filter:drop-shadow(0 2px 10px rgba(239,63,176,0.35));
   }
@@ -66,8 +66,8 @@
     --bg-color: #fff;
     --main-color: #323232;
     position: relative;
-    width: 326px;
-    height: 36px;
+    width: 378px;
+    height: 42px;
     background-color: var(--bg-color);
     border: 2px solid var(--main-color);
     border-radius: 34px;
@@ -77,8 +77,8 @@
   }
 
   .option {
-    width: 80.5px;
-    height: 28px;
+    width: 93.5px;
+    height: 34px;
     position: relative;
     top: 2px;
     left: 2px;
@@ -106,7 +106,7 @@
 
   .span {
     font-family:'JetBrains Mono', ui-monospace, monospace;
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 0.03em;
     color: var(--font-color-dark);
   }
@@ -245,6 +245,15 @@
     .copy h1 .light{ font-size:42px; }
     .copy h1 .bold{ font-size:60px; }
   }
+  .copy h1 .es-translation{
+    display:block;
+    margin-top:8px;
+    font-style:italic;
+    font-weight:400;
+    color:rgba(28,26,36,0.5);
+    font-size:16px;
+  }
+  @media (min-width:640px){ .copy h1 .es-translation{ font-size:19px; } }
 
   .copy p{
     margin:22px 0 0;
@@ -427,14 +436,15 @@
 
   .s2-heading{
     margin:0;
-    max-width:20ch;
+    max-width:42ch;
     font-family:'Work Sans', sans-serif;
     font-weight:700;
     font-size:32px;
     line-height:1.15;
     letter-spacing:-0.02em;
+    text-wrap:balance;
   }
-  @media (min-width:640px){ .s2-heading{ font-size:48px; max-width:22ch; } }
+  @media (min-width:640px){ .s2-heading{ font-size:40px; max-width:38ch; } }
   .s2-heading .dim{ color:var(--s2-muted-dim); }
 
   .s2-sub{
@@ -700,8 +710,8 @@
   .carousel-hit{
     position:absolute;
     top:50%; left:50%;
-    width:190px; height:280px;
-    margin:-140px 0 0 -95px;
+    width:380px; height:280px;
+    margin:-140px 0 0 -190px;
     border-radius:14px;
     z-index:10;
     pointer-events:none;
@@ -710,8 +720,8 @@
   .carousel-card{
     position:absolute;
     top:0; left:0;
-    width:190px; height:280px;
-    margin:-140px 0 0 -95px;
+    width:380px; height:280px;
+    margin:-140px 0 0 -190px;
     border-radius:14px;
     background-color:var(--accent-2);
     background-size:cover;
@@ -791,7 +801,7 @@
       <span class="circle" aria-hidden="true">
         <span class="icon arrow"></span>
       </span>
-      <span class="button-text">Contratar equipo</span>
+      <span class="button-text">Crear servicio</span>
     </a>
   </header>
 
@@ -814,6 +824,7 @@
       <h1 class="reveal" style="animation-delay:.1s">
         <span class="light">Think in agents.</span>
         <span class="bold">Ship in minutes.</span>
+        <span class="es-translation">Piensa en agentes. Lánzalo en minutos.</span>
       </h1>
       <p class="reveal" style="animation-delay:.2s">IntelliTech turns a prompt into a production agent — reasoning, tools, and memory wired together automatically.</p>
       <a class="cta reveal" style="animation-delay:.3s" href="#">
@@ -827,6 +838,32 @@
     <p>Built for teams who'd rather ship than configure.</p>
   </footer>
 </main>
+
+<section class="section-3">
+  <div class="s3-box">
+    <span class="s2-tag">Sección 3</span>
+    <h2>Aquí va el siguiente contenido</h2>
+    <p class="s3-sub">Dime qué quieres poner aquí (servicios, cómo funciona, precios, equipo...) y lo construimos.</p>
+
+    <div class="carousel-wrap reveal" style="animation-delay:.1s">
+      <div class="carousel-glow" aria-hidden="true"></div>
+      <div class="carousel-particles" id="carousel-particles" aria-hidden="true"></div>
+      <button class="carousel-nav prev" id="carousel-prev" type="button" aria-label="Tarjeta anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="carousel-nav next" id="carousel-next" type="button" aria-label="Tarjeta siguiente">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+      <div class="carousel-ring" id="carousel-ring" aria-hidden="true">
+        <div class="carousel-card" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop')"><span>Auditorías</span></div>
+        <a class="carousel-card" href="creacion-webs.html" style="background-image:url('https://images.unsplash.com/photo-1559028012-481c04fa702d?q=80&w=600&auto=format&fit=crop')"><span>Creación de webs custom</span></a>
+        <a class="carousel-card" href="integracion-ia.html" style="background-image:url('https://images.unsplash.com/photo-1697577418970-95d99b5a55cf?q=80&w=600&auto=format&fit=crop')"><span>Integración IA</span></a>
+        <a class="carousel-card" href="marketing.html" style="background-image:url('https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=600&auto=format&fit=crop')"><span>Marketing</span></a>
+      </div>
+      <a class="carousel-hit" id="carousel-hit" tabindex="-1" aria-hidden="true"></a>
+    </div>
+  </div>
+</section>
 
 <section class="section-2">
   <div class="s2-box">
@@ -868,32 +905,6 @@
         <p class="s2-quote-text">El agente que construyeron con IntelliTech redujo nuestros tickets de soporte un 80% mientras mejoraba la satisfacción del cliente.</p>
         <p class="s2-quote-by">— CTO, cliente Enterprise</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="section-3">
-  <div class="s3-box">
-    <span class="s2-tag">Sección 3</span>
-    <h2>Aquí va el siguiente contenido</h2>
-    <p class="s3-sub">Dime qué quieres poner aquí (servicios, cómo funciona, precios, equipo...) y lo construimos.</p>
-
-    <div class="carousel-wrap reveal" style="animation-delay:.1s">
-      <div class="carousel-glow" aria-hidden="true"></div>
-      <div class="carousel-particles" id="carousel-particles" aria-hidden="true"></div>
-      <button class="carousel-nav prev" id="carousel-prev" type="button" aria-label="Tarjeta anterior">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <button class="carousel-nav next" id="carousel-next" type="button" aria-label="Tarjeta siguiente">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-      </button>
-      <div class="carousel-ring" id="carousel-ring" aria-hidden="true">
-        <div class="carousel-card" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop')"><span>Auditorías</span></div>
-        <a class="carousel-card" href="creacion-webs.html" style="background-image:url('https://images.unsplash.com/photo-1559028012-481c04fa702d?q=80&w=600&auto=format&fit=crop')"><span>Creación de webs custom</span></a>
-        <a class="carousel-card" href="integracion-ia.html" style="background-image:url('https://images.unsplash.com/photo-1697577418970-95d99b5a55cf?q=80&w=600&auto=format&fit=crop')"><span>Integración IA</span></a>
-        <a class="carousel-card" href="marketing.html" style="background-image:url('https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=600&auto=format&fit=crop')"><span>Marketing</span></a>
-      </div>
-      <a class="carousel-hit" id="carousel-hit" tabindex="-1" aria-hidden="true"></a>
     </div>
   </div>
 </section>
@@ -961,7 +972,7 @@
     var cards = ring.querySelectorAll('.carousel-card');
     var n = cards.length;
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var radius = Math.min(560, Math.max(320, ring.parentElement.getBoundingClientRect().width * 0.44));
+    var radius = Math.min(680, Math.max(420, ring.parentElement.getBoundingClientRect().width * 0.5));
     var cardAngles = [];
     for (var i = 0; i < n; i++){
       var cardAngle = (360 / n) * i;
