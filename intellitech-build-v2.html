@@ -218,7 +218,7 @@
 
   .copy{
     align-self:center;
-    max-width:34rem;
+    max-width:38rem;
     padding-bottom:60px;
   }
 
@@ -233,34 +233,24 @@
     display:block;
     font-weight:400;
     color:rgba(28,26,36,0.62);
-    font-size:32px;
+    font-size:24px;
   }
   .copy h1 .bold{
     display:block;
     font-weight:800;
     color:#0e0c16;
-    font-size:44px;
+    font-size:36px;
   }
   @media (min-width:640px){
-    .copy h1 .light{ font-size:42px; }
-    .copy h1 .bold{ font-size:60px; }
+    .copy h1 .light{ font-size:32px; }
+    .copy h1 .bold{ font-size:48px; }
   }
-  .copy h1 .es-translation{
-    display:block;
-    margin-top:8px;
-    font-style:italic;
-    font-weight:400;
-    color:rgba(28,26,36,0.5);
-    font-size:16px;
-  }
-  @media (min-width:640px){ .copy h1 .es-translation{ font-size:19px; } }
-
   .copy p{
     margin:22px 0 0;
     font-size:16px;
     line-height:1.6;
     color:rgba(28,26,36,0.72);
-    max-width:34ch;
+    max-width:56ch;
   }
 
   /* Mismo estilo del menú (.wrapper), aplicado al botón Saber más */
@@ -768,6 +758,52 @@
     .carousel-particles i{ animation:none !important; }
     .carousel-ring{ transition:none !important; }
   }
+
+  /* ---- Todos los servicios ---- */
+  .section-services{
+    position:relative;
+    background:var(--bg);
+    padding:14px;
+  }
+  .services-box{
+    background:#fbfbf9;
+    color:#15121d;
+    border-radius:28px;
+    border:1px solid rgba(20,15,30,0.06);
+    padding:70px 24px;
+    text-align:center;
+  }
+  @media (min-width:760px){ .services-box{ padding:90px 44px; } }
+  .services-heading{
+    margin:18px 0 0;
+    font-family:'Work Sans', sans-serif;
+    font-weight:800;
+    font-size:32px;
+    letter-spacing:-0.02em;
+  }
+  @media (min-width:640px){ .services-heading{ font-size:40px; } }
+  .services-grid{
+    margin:40px auto 0;
+    max-width:820px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px;
+  }
+  .service-pill{
+    display:inline-flex;
+    align-items:center;
+    padding:12px 22px;
+    border-radius:999px;
+    border:1px solid rgba(20,15,30,0.1);
+    background:#fff;
+    font-family:'Work Sans', sans-serif;
+    font-weight:600;
+    font-size:14px;
+    color:#15121d;
+    transition:border-color 0.25s ease, transform 0.25s ease;
+  }
+  .service-pill:hover{ border-color:var(--accent-1); transform:translateY(-2px); }
 </style>
 
 <main>
@@ -822,11 +858,10 @@
   <div class="stage">
     <div class="copy">
       <h1 class="reveal" style="animation-delay:.1s">
-        <span class="light">Think in agents.</span>
-        <span class="bold">Ship in minutes.</span>
-        <span class="es-translation">Piensa en agentes. Lánzalo en minutos.</span>
+        <span class="light">Todo lo que tu negocio necesita,</span>
+        <span class="bold">en un solo lugar</span>
       </h1>
-      <p class="reveal" style="animation-delay:.2s">IntelliTech turns a prompt into a production agent — reasoning, tools, and memory wired together automatically.</p>
+      <p class="reveal" style="animation-delay:.2s">IntelliTech turns a prompt into a production agent<br>reasoning, tools, and memory wired together automatically.</p>
       <a class="cta reveal" style="animation-delay:.3s" href="#">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         Saber más
@@ -904,6 +939,23 @@
         <p class="s2-quote-text">El agente que construyeron con IntelliTech redujo nuestros tickets de soporte un 80% mientras mejoraba la satisfacción del cliente.</p>
         <p class="s2-quote-by">— CTO, cliente Enterprise</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-services">
+  <div class="services-box">
+    <span class="s2-tag">Servicios</span>
+    <h2 class="services-heading">Todo lo que hacemos por tu marca</h2>
+    <div class="services-grid">
+      <span class="service-pill">Marketing</span>
+      <span class="service-pill">Logos</span>
+      <span class="service-pill">Re-branding</span>
+      <span class="service-pill">Auditorías</span>
+      <span class="service-pill">Software personalizado</span>
+      <span class="service-pill">Integración de IA</span>
+      <span class="service-pill">Rótulos y vinilos</span>
+      <span class="service-pill">Redes sociales</span>
     </div>
   </div>
 </section>
