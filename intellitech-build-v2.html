@@ -617,11 +617,10 @@
     color:var(--s3-ink);
     border-radius:28px;
     border:1px solid rgba(20,15,30,0.06);
-    padding:120px 24px;
+    padding:64px 24px 56px;
     text-align:center;
   }
-  @media (min-width:760px){ .s3-box{ padding:160px 44px; } }
-  .s3-box .s2-tag{ color:var(--s3-muted-dim); border-color:var(--s3-hair); }
+  @media (min-width:760px){ .s3-box{ padding:80px 44px 64px; } }
   .s3-box h2{
     margin:0;
     font-family:'Work Sans', sans-serif;
@@ -644,7 +643,7 @@
     width:100%;
     max-width:min(96vw, 1400px);
     height:340px;
-    margin:70px auto 0;
+    margin:40px auto 0;
     perspective:1500px;
   }
   .carousel-glow{
@@ -663,7 +662,7 @@
     display:block;
     width:2px; height:2px;
     border-radius:50%;
-    background:var(--accent-2);
+    background:var(--dot-color, var(--accent-2));
     animation-name:drift;
     animation-timing-function:ease-in-out;
     animation-iteration-count:infinite;
@@ -685,7 +684,7 @@
     position:absolute;
     top:50%;
     transform:translateY(-50%);
-    width:40px; height:40px;
+    width:48px; height:48px;
     border-radius:50%;
     border:1px solid var(--s3-hair);
     background:rgba(20,15,30,0.04);
@@ -703,10 +702,10 @@
   .carousel-nav.prev{ left:0; }
   .carousel-nav.next{ right:0; }
   @media (min-width:820px){
-    .carousel-nav.prev{ left:-54px; }
-    .carousel-nav.next{ right:-54px; }
+    .carousel-nav.prev{ left:calc(50% - 254px); }
+    .carousel-nav.next{ right:calc(50% - 254px); }
   }
-  .carousel-nav svg{ width:16px; height:16px; }
+  .carousel-nav svg{ width:18px; height:18px; }
   .carousel-hit{
     position:absolute;
     top:50%; left:50%;
@@ -841,9 +840,8 @@
 
 <section class="section-3">
   <div class="s3-box">
-    <span class="s2-tag">Sección 3</span>
-    <h2>Aquí va el siguiente contenido</h2>
-    <p class="s3-sub">Dime qué quieres poner aquí (servicios, cómo funciona, precios, equipo...) y lo construimos.</p>
+    <h2>Todo lo que tu negocio necesita, en un solo lugar.</h2>
+    <p class="s3-sub">Impulsamos tu negocio desde todos los ángulos.</p>
 
     <div class="carousel-wrap reveal" style="animation-delay:.1s">
       <div class="carousel-glow" aria-hidden="true"></div>
@@ -1033,11 +1031,13 @@
 
     var host = document.getElementById('carousel-particles');
     if (host){
-      var count = 22;
+      var count = 40;
+      var palette = ['#ef3fb0', '#c23fef', '#6a5cf2', '#2f8fff', '#22d3ee', '#4ade80', '#f5a623'];
       for (var p = 0; p < count; p++){
         var dot = document.createElement('i');
         dot.style.top = (Math.random() * 100) + '%';
         dot.style.left = (Math.random() * 100) + '%';
+        dot.style.setProperty('--dot-color', palette[Math.floor(Math.random() * palette.length)]);
         var op = (0.2 + Math.random() * 0.5).toFixed(2);
         dot.style.setProperty('--o', op);
         var angle2 = Math.random() * Math.PI * 2;
