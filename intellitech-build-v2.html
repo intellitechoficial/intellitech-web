@@ -621,9 +621,10 @@
   @media (min-width:640px){ .s3-box h2{ font-size:44px; } }
   .s3-box p.s3-sub{
     margin:22px auto 0;
-    max-width:38ch;
+    max-width:none;
+    white-space:nowrap;
     color:var(--s3-muted);
-    font-size:17px;
+    font-size:clamp(13px, 3.6vw, 17px);
     line-height:1.6;
   }
 
