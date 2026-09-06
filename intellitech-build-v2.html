@@ -217,10 +217,12 @@
   @media (min-width:760px){ .stage{ padding:0 44px; } }
 
   .copy{
-    align-self:center;
+    align-self:flex-start;
+    margin-top:24px;
     max-width:38rem;
     padding-bottom:60px;
   }
+  @media (min-width:760px){ .copy{ margin-top:12px; } }
 
   .copy h1{
     margin:0;
@@ -234,17 +236,29 @@
     font-weight:400;
     color:rgba(28,26,36,0.62);
     font-size:24px;
+    text-wrap:balance;
   }
   .copy h1 .bold{
     display:block;
     font-weight:800;
     color:#0e0c16;
-    font-size:36px;
+    font-size:28px;
+    text-wrap:balance;
   }
   @media (min-width:640px){
     .copy h1 .light{ font-size:32px; }
-    .copy h1 .bold{ font-size:48px; }
+    .copy h1 .bold{ font-size:38px; }
   }
+  .copy h1 .es-line{
+    display:block;
+    font-style:italic;
+    font-weight:400;
+    color:rgba(28,26,36,0.42);
+    font-size:13px;
+    margin-top:4px;
+  }
+  .copy h1 .bold + .es-line{ margin-top:6px; margin-bottom:14px; }
+  @media (min-width:640px){ .copy h1 .es-line{ font-size:15px; } }
   .copy p{
     margin:22px 0 0;
     font-size:16px;
@@ -866,8 +880,10 @@
   <div class="stage">
     <div class="copy">
       <h1 class="reveal" style="animation-delay:.1s">
-        <span class="light">Todo lo que tu negocio necesita,</span>
-        <span class="bold">en un solo lugar</span>
+        <span class="light">Ideas that become business:</span>
+        <span class="es-line">Ideas que se convierten en negocio:</span>
+        <span class="bold">web, software, AI, and marketing in one place</span>
+        <span class="es-line">web, software, IA y marketing en un solo lugar</span>
       </h1>
       <p class="reveal" style="animation-delay:.2s">IntelliTech turns a prompt into a production agent<br>reasoning, tools, and memory wired together automatically.</p>
       <a class="cta reveal" style="animation-delay:.3s" href="#">
