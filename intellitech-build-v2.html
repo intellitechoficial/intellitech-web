@@ -390,6 +390,10 @@
     color:rgba(28,26,36,0.55);
     text-shadow:0 1px 8px rgba(255,255,255,0.6);
   }
+  footer .logos-label{ margin:0; text-align:left; color:#000; text-shadow:0 1px 8px rgba(255,255,255,0.75); }
+  footer .logos-marquee{ margin-top:12px; }
+  footer .logo-item{ color:#000; opacity:0.85; text-shadow:0 1px 8px rgba(255,255,255,0.75); }
+  footer .logo-item:hover{ opacity:1; color:#000; }
 
   a:focus-visible, button:focus-visible{
     outline:2px solid var(--accent-1);
@@ -774,6 +778,33 @@
   .carousel-card:hover{
     box-shadow:0 22px 54px rgba(20,15,30,0.4), inset 0 0 0 1px rgba(255,255,255,0.3);
   }
+  .carousel-card .cv-icon{
+    position:absolute;
+    top:20px; left:14px;
+    width:32px; height:32px;
+    color:rgba(255,255,255,0.92);
+    filter:drop-shadow(0 2px 10px rgba(8,6,13,0.45));
+  }
+  .carousel-card.cv-audit{
+    background-image:
+      radial-gradient(115% 95% at 12% 8%, rgba(106,92,242,0.55) 0%, rgba(106,92,242,0) 55%),
+      radial-gradient(140% 140% at 20% 0%, #241b46 0%, #120e22 55%, #08060d 100%);
+  }
+  .carousel-card.cv-webs{
+    background-image:
+      radial-gradient(115% 95% at 88% 8%, rgba(239,63,176,0.5) 0%, rgba(239,63,176,0) 55%),
+      radial-gradient(140% 140% at 20% 0%, #241b46 0%, #120e22 55%, #08060d 100%);
+  }
+  .carousel-card.cv-ia{
+    background-image:
+      linear-gradient(135deg, rgba(239,63,176,0.55) 0%, rgba(106,92,242,0.4) 45%, rgba(18,14,34,0) 72%),
+      radial-gradient(140% 140% at 20% 0%, #241b46 0%, #120e22 55%, #08060d 100%);
+  }
+  .carousel-card.cv-marketing{
+    background-image:
+      radial-gradient(115% 95% at 82% 92%, rgba(106,92,242,0.5) 0%, rgba(106,92,242,0) 55%),
+      radial-gradient(140% 140% at 20% 0%, #241b46 0%, #120e22 55%, #08060d 100%);
+  }
   @media (prefers-reduced-motion: reduce){
     .carousel-particles i{ animation:none !important; }
     .carousel-ring{ transition:none !important; }
@@ -783,7 +814,7 @@
   .logos-label{
     margin:64px 0 0;
     font-family:'JetBrains Mono', ui-monospace, monospace;
-    font-size:11px;
+    font-size:13px;
     letter-spacing:0.12em;
     text-transform:uppercase;
     color:var(--s2-muted-dim);
@@ -813,7 +844,7 @@
     gap:9px;
     font-family:'Work Sans', sans-serif;
     font-weight:800;
-    font-size:19px;
+    font-size:23px;
     letter-spacing:-0.01em;
     color:var(--s2-muted-dim);
     white-space:nowrap;
@@ -822,7 +853,7 @@
   }
   .logo-item:hover{ opacity:1; color:var(--s2-ink); }
   .logo-dot{
-    width:9px; height:9px;
+    width:11px; height:11px;
     border-radius:50%;
     flex-shrink:0;
     background:linear-gradient(135deg, var(--accent-1), var(--accent-2));
@@ -903,7 +934,21 @@
   </div>
 
   <footer class="reveal" style="animation-delay:.45s">
-    <p>Built for teams who'd rather ship than configure.</p>
+    <p class="logos-label">Empresas que ya confían en nosotros</p>
+    <div class="logos-marquee">
+      <div class="logos-track">
+        <span class="logo-item"><span class="logo-dot"></span>Nordic Robotics</span>
+        <span class="logo-item"><span class="logo-dot"></span>Vertex Dynamics</span>
+        <span class="logo-item"><span class="logo-dot"></span>Solstice Retail</span>
+        <span class="logo-item"><span class="logo-dot"></span>Kepler Logistics</span>
+        <span class="logo-item"><span class="logo-dot"></span>Anthemis Health</span>
+        <span class="logo-item" aria-hidden="true"><span class="logo-dot"></span>Nordic Robotics</span>
+        <span class="logo-item" aria-hidden="true"><span class="logo-dot"></span>Vertex Dynamics</span>
+        <span class="logo-item" aria-hidden="true"><span class="logo-dot"></span>Solstice Retail</span>
+        <span class="logo-item" aria-hidden="true"><span class="logo-dot"></span>Kepler Logistics</span>
+        <span class="logo-item" aria-hidden="true"><span class="logo-dot"></span>Anthemis Health</span>
+      </div>
+    </div>
   </footer>
 </main>
 
@@ -922,72 +967,24 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
       </button>
       <div class="carousel-ring" id="carousel-ring" aria-hidden="true">
-        <div class="carousel-card" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop')"><span>Auditorías</span></div>
-        <a class="carousel-card" href="creacion-webs.html" style="background-image:url('https://images.unsplash.com/photo-1559028012-481c04fa702d?q=80&w=600&auto=format&fit=crop')"><span>Creación de webs custom</span></a>
-        <a class="carousel-card" href="integracion-ia.html" style="background-image:url('https://images.unsplash.com/photo-1697577418970-95d99b5a55cf?q=80&w=600&auto=format&fit=crop')"><span>Integración IA</span></a>
-        <a class="carousel-card" href="marketing.html" style="background-image:url('https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=600&auto=format&fit=crop')"><span>Marketing</span></a>
+        <div class="carousel-card cv-audit">
+          <svg class="cv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <span>Auditorías</span>
+        </div>
+        <a class="carousel-card cv-webs" href="creacion-webs.html">
+          <svg class="cv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+          <span>Creación de webs custom</span>
+        </a>
+        <a class="carousel-card cv-ia" href="integracion-ia.html">
+          <svg class="cv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          <span>Integración IA</span>
+        </a>
+        <a class="carousel-card cv-marketing" href="marketing.html">
+          <svg class="cv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>
+          <span>Marketing</span>
+        </a>
       </div>
       <a class="carousel-hit" id="carousel-hit" tabindex="-1" aria-hidden="true"></a>
-    </div>
-  </div>
-</section>
-
-<section class="section-2">
-  <div class="s2-box">
-    <span class="s2-tag">Por qué IntelliTech</span>
-    <h2 class="s2-heading">Automatiza lo manual, acelera el futuro. <span class="dim">Nuestros agentes entregan crecimiento medible y excelencia operativa.</span></h2>
-    <p class="s2-sub">Equipamos a los equipos con herramientas inteligentes que convierten datos complejos en resultados de negocio accionables cada día.</p>
-
-    <div class="s2-grid">
-      <div class="s2-card s2-metric">
-        <div class="s2-metric-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
-        </div>
-        <div>
-          <p class="s2-metric-value">$2.4M</p>
-          <p class="s2-metric-caption">Ahorro generado para nuestros clientes gracias a optimizaciones con IA.</p>
-        </div>
-      </div>
-
-      <div class="s2-card s2-agents">
-        <div class="s2-avatars">
-          <span></span><span></span><span></span><span></span>
-        </div>
-        <p class="s2-agents-count"><b>2.800</b> agentes activos</p>
-      </div>
-
-      <div class="s2-card s2-speed">
-        <p class="s2-speed-value">5x</p>
-        <p class="s2-speed-label">Más rápido al mercado.</p>
-      </div>
-
-      <div class="s2-card s2-inference">
-        <div class="s2-radial"><span class="s2-radial-dot"></span></div>
-        <p class="s2-inference-title">Inferencia en tiempo real</p>
-        <p class="s2-inference-caption">Procesamiento listo para despliegues de nivel empresarial.</p>
-      </div>
-
-      <div class="s2-card s2-quote">
-        <p class="s2-quote-mark">&ldquo;</p>
-        <p class="s2-quote-text">El agente que construyeron con IntelliTech redujo nuestros tickets de soporte un 80% mientras mejoraba la satisfacción del cliente.</p>
-        <p class="s2-quote-by">— CTO, cliente Enterprise</p>
-      </div>
-    </div>
-
-    <p class="logos-label">Empresas que ya confían en nosotros</p>
-    <div class="logos-marquee">
-      <div class="logos-track">
-        <span class="logo-item"><span class="logo-dot"></span>Nordic Robotics</span>
-        <span class="logo-item"><span class="logo-dot"></span>Vertex Dynamics</span>
-        <span class="logo-item"><span class="logo-dot"></span>Solstice Retail</span>
-        <span class="logo-item"><span class="logo-dot"></span>Kepler Logistics</span>
-        <span class="logo-item"><span class="logo-dot"></span>Anthemis Health</span>
-        <span class="logo-item" aria-hidden="true"><span class="logo-dot"></span>Nordic Robotics</span>
-        <span class="logo-item" aria-hidden="true"><span class="logo-dot"></span>Vertex Dynamics</span>
-        <span class="logo-item" aria-hidden="true"><span class="logo-dot"></span>Solstice Retail</span>
-        <span class="logo-item" aria-hidden="true"><span class="logo-dot"></span>Kepler Logistics</span>
-        <span class="logo-item" aria-hidden="true"><span class="logo-dot"></span>Anthemis Health</span>
-      </div>
     </div>
   </div>
 </section>
