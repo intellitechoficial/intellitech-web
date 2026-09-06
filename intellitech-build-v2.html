@@ -407,9 +407,9 @@
     color:var(--s2-ink);
     border-radius:28px;
     border:1px solid rgba(20,15,30,0.06);
-    padding:100px 24px 120px;
+    padding:64px 24px 70px;
   }
-  @media (min-width:760px){ .s2-box{ padding:140px 44px 150px; } }
+  @media (min-width:760px){ .s2-box{ padding:80px 44px 90px; } }
 
   .s2-tag{
     display:inline-block;
@@ -760,6 +760,58 @@
     .carousel-ring{ transition:none !important; }
   }
 
+  /* ---- Banner de logos de clientes ---- */
+  .logos-label{
+    margin:64px 0 0;
+    font-family:'JetBrains Mono', ui-monospace, monospace;
+    font-size:11px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--s2-muted-dim);
+    text-align:center;
+  }
+  .logos-marquee{
+    margin-top:22px;
+    overflow:hidden;
+    -webkit-mask-image:linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image:linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+  .logos-track{
+    display:flex;
+    align-items:center;
+    width:max-content;
+    gap:64px;
+    animation:logosScroll 24s linear infinite;
+  }
+  .logos-marquee:hover .logos-track{ animation-play-state:paused; }
+  @keyframes logosScroll{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+  .logo-item{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    font-family:'Work Sans', sans-serif;
+    font-weight:800;
+    font-size:19px;
+    letter-spacing:-0.01em;
+    color:var(--s2-muted-dim);
+    white-space:nowrap;
+    opacity:0.7;
+    transition:opacity 0.2s ease, color 0.2s ease;
+  }
+  .logo-item:hover{ opacity:1; color:var(--s2-ink); }
+  .logo-dot{
+    width:9px; height:9px;
+    border-radius:50%;
+    flex-shrink:0;
+    background:linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  }
+  @media (prefers-reduced-motion: reduce){
+    .logos-track{ animation:none !important; }
+  }
+
 </style>
 
 <main>
@@ -894,6 +946,22 @@
         <p class="s2-quote-mark">&ldquo;</p>
         <p class="s2-quote-text">El agente que construyeron con IntelliTech redujo nuestros tickets de soporte un 80% mientras mejoraba la satisfacción del cliente.</p>
         <p class="s2-quote-by">— CTO, cliente Enterprise</p>
+      </div>
+    </div>
+
+    <p class="logos-label">Empresas que ya confían en nosotros</p>
+    <div class="logos-marquee">
+      <div class="logos-track">
+        <span class="logo-item"><span class="logo-dot"></span>Nordic Robotics</span>
+        <span class="logo-item"><span class="logo-dot"></span>Vertex Dynamics</span>
+        <span class="logo-item"><span class="logo-dot"></span>Solstice Retail</span>
+        <span class="logo-item"><span class="logo-dot"></span>Kepler Logistics</span>
+        <span class="logo-item"><span class="logo-dot"></span>Anthemis Health</span>
+        <span class="logo-item" aria-hidden="true"><span class="logo-dot"></span>Nordic Robotics</span>
+        <span class="logo-item" aria-hidden="true"><span class="logo-dot"></span>Vertex Dynamics</span>
+        <span class="logo-item" aria-hidden="true"><span class="logo-dot"></span>Solstice Retail</span>
+        <span class="logo-item" aria-hidden="true"><span class="logo-dot"></span>Kepler Logistics</span>
+        <span class="logo-item" aria-hidden="true"><span class="logo-dot"></span>Anthemis Health</span>
       </div>
     </div>
   </div>
