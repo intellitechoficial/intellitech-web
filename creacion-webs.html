@@ -17,6 +17,7 @@
     --lime:#d4f24d;
     --mint:#8ff0c8;
     --peach:#ffc48a;
+    --sky:#bcdcff;
   }
   *{ box-sizing:border-box; }
   html,body{ margin:0; padding:0; }
@@ -54,11 +55,11 @@
   .hero{
     position:relative;
     background:var(--bg);
-    border-radius:0 0 40px 40px;
+    border-radius:0;
     padding:40px 20px 60px;
     overflow:hidden;
   }
-  @media (min-width:760px){ .hero{ padding:50px 44px 80px; border-radius:0 0 56px 56px; } }
+  @media (min-width:760px){ .hero{ padding:50px 44px 80px; } }
   .hero-top{ max-width:1240px; margin:0 auto 50px; }
   .hero-body{ max-width:1240px; margin:0 auto; display:grid; grid-template-columns:1fr; gap:40px; align-items:center; }
   @media (min-width:900px){ .hero-body{ grid-template-columns:1.1fr 1fr; } }
@@ -184,21 +185,22 @@
   /* ---- sections: bandas a todo ancho, sin huecos entre ellas ---- */
   .wrap{ max-width:1240px; margin:0 auto; position:relative; }
   .section{
-    width:100%; padding:80px 20px;
+    width:100%; padding:40px 20px;
     color:#fff; background:var(--ink);
     position:relative; overflow:hidden;
   }
-  @media (min-width:760px){ .section{ padding:120px 44px; } }
+  @media (min-width:760px){ .section{ padding:60px 44px; } }
   .section.mint{ background:var(--mint); color:var(--ink); }
   .section.lime{ background:var(--lime); color:var(--ink); }
+  .section.sky{ background:var(--sky); color:var(--ink); }
   .section.finale{ background:linear-gradient(135deg, var(--accent-1), var(--accent-2)); color:#fff; }
 
   .kicker{ font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--lime); }
-  .section.mint .kicker, .section.lime .kicker{ color:var(--ink); opacity:.55; }
+  .section.mint .kicker, .section.lime .kicker, .section.sky .kicker{ color:var(--ink); opacity:.55; }
   .section h2{ margin:14px 0 0; font-size:32px; font-style:italic; font-weight:800; letter-spacing:-0.01em; }
   @media (min-width:640px){ .section h2{ font-size:48px; } }
   .section p.sub{ margin:16px 0 0; max-width:52ch; color:rgba(255,255,255,0.6); font-size:15.5px; line-height:1.6; }
-  .section.mint p.sub, .section.lime p.sub{ color:rgba(24,19,37,0.65); }
+  .section.mint p.sub, .section.lime p.sub, .section.sky p.sub{ color:rgba(24,19,37,0.65); }
 
   .services-grid{ margin-top:56px; display:grid; grid-template-columns:1fr; gap:16px; }
   @media (min-width:700px){ .services-grid{ grid-template-columns:repeat(3,1fr); } }
@@ -208,6 +210,9 @@
   .svc-card:hover .ico{ transform:rotate(-8deg) scale(1.08); }
   .svc-card h3{ margin:16px 0 0; font-size:17px; font-style:italic; }
   .svc-card p{ margin:8px 0 0; font-size:13.5px; color:rgba(255,255,255,0.55); line-height:1.55; }
+  .section.mint .svc-card{ background:rgba(24,19,37,0.06); border-color:rgba(24,19,37,0.12); }
+  .section.mint .svc-card:hover{ background:rgba(24,19,37,0.1); }
+  .section.mint .svc-card p{ color:rgba(24,19,37,0.65); }
 
   .steps{ margin-top:56px; display:grid; grid-template-columns:1fr; gap:0; }
   .step{ display:flex; gap:22px; padding:24px 18px; margin:0 -18px; border-top:1px solid rgba(24,19,37,0.16); border-radius:14px; transition:background .25s ease, padding-left .25s ease; }
@@ -232,6 +237,8 @@
   .includes-check svg{ width:13px; height:13px; }
   .includes-item h4{ margin:0; font-size:15px; font-style:italic; }
   .includes-item p{ margin:5px 0 0; font-size:13px; color:rgba(255,255,255,0.55); line-height:1.5; }
+  .section.sky .includes-item{ background:rgba(24,19,37,0.06); border-color:rgba(24,19,37,0.12); }
+  .section.sky .includes-item p{ color:rgba(24,19,37,0.65); }
 
   /* ---- faq ---- */
   .faq-list{ margin-top:50px; max-width:820px; }
@@ -407,41 +414,6 @@
   </div>
 </section>
 
-<div class="stats-band-wrap">
-  <span class="doodle" style="width:38px;height:38px;top:10%;left:5%;" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="none" stroke="#8ff0c8" stroke-width="1.6"><path d="M12 3v18M3 12h18"/></svg>
-  </span>
-  <span class="doodle" style="width:26px;height:26px;bottom:8%;right:7%;" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="none" stroke="#ffc48a" stroke-width="1.6"><circle cx="12" cy="12" r="8"/></svg>
-  </span>
-  <span class="doodle" style="width:16px;height:16px;top:20%;right:22%;" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="#ef3fb0" stroke="none"><circle cx="12" cy="12" r="6"/></svg>
-  </span>
-  <span class="doodle" style="width:20px;height:20px;top:60%;left:20%;" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.6"><rect x="8" y="8" width="8" height="8" transform="rotate(45 12 12)"/></svg>
-  </span>
-  <span class="doodle" style="width:14px;height:14px;bottom:14%;left:38%;" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="#d4f24d" stroke="none"><path d="M12 2l1.2 6.8L20 10l-6.8 1.2L12 18l-1.2-6.8L4 10l6.8-1.2z"/></svg>
-  </span>
-  <span class="doodle" style="width:24px;height:24px;top:8%;right:38%;" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.6"><path d="M3 12c4-8 8 8 12 0s5-6 6-2"/></svg>
-  </span>
-<div class="stats-band">
-  <div class="stat-card reveal">
-    <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 9h20M8 4v16"/></svg></span>
-    <b>Ejemplos en vivo, no maquetas</b>
-  </div>
-  <div class="stat-card reveal" style="transition-delay:.08s;">
-    <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>
-    <b>Código 100% a medida</b>
-  </div>
-  <div class="stat-card reveal" style="transition-delay:.16s;">
-    <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M4.9 4.9l14.2 14.2"/></svg></span>
-    <b>Cero plantillas recicladas</b>
-  </div>
-</div>
-</div>
-
 <section class="showcase" id="ejemplos">
   <span class="doodle" style="width:34px;height:34px;top:8%;left:6%;" aria-hidden="true">
     <svg viewBox="0 0 24 24" fill="#181325" stroke="none"><path d="M12 2l1.2 6.8L20 10l-6.8 1.2L12 18l-1.2-6.8L4 10l6.8-1.2z"/></svg>
@@ -495,7 +467,7 @@
  </div>
 </section>
 
-<section class="section" id="servicios">
+<section class="section mint" id="servicios">
   <span class="doodle" style="width:30px;height:30px;top:9%;right:8%;" aria-hidden="true">
     <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1.6"><circle cx="12" cy="12" r="8"/></svg>
   </span>
@@ -538,66 +510,21 @@
  </div>
 </section>
 
-<section class="section mint">
-  <span class="doodle" style="width:32px;height:32px;top:10%;right:9%;" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="none" stroke="#181325" stroke-width="1.6"><path d="M12 3v18M3 12h18"/></svg>
-  </span>
-  <span class="doodle" style="width:24px;height:24px;bottom:10%;left:6%;" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="none" stroke="#181325" stroke-width="1.6"><rect x="8" y="8" width="8" height="8" transform="rotate(45 12 12)"/></svg>
-  </span>
-  <span class="doodle" style="width:14px;height:14px;top:34%;right:24%;" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="#181325" stroke="none"><circle cx="12" cy="12" r="6"/></svg>
-  </span>
-  <span class="doodle" style="width:18px;height:18px;bottom:30%;right:14%;" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="none" stroke="#181325" stroke-width="1.6"><circle cx="12" cy="12" r="8"/></svg>
-  </span>
-  <span class="doodle" style="width:12px;height:12px;top:14%;left:30%;" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="#181325" stroke="none"><path d="M12 2l1.2 6.8L20 10l-6.8 1.2L12 18l-1.2-6.8L4 10l6.8-1.2z"/></svg>
-  </span>
- <div class="wrap">
-  <span class="kicker reveal">Cómo trabajamos</span>
-  <h2 class="reveal">Sin proyecto eterno</h2>
-  <div class="steps">
-    <div class="step reveal">
-      <span class="n">01</span>
-      <div>
-        <h3>Descubrimiento</h3>
-        <p>Entendemos tu negocio antes de dibujar nada.</p>
-      </div>
-    </div>
-    <div class="step reveal" style="transition-delay:.08s;">
-      <span class="n">02</span>
-      <div>
-        <h3>Diseño</h3>
-        <p>Ves y ajustas el diseño completo antes de que se escriba código.</p>
-      </div>
-    </div>
-    <div class="step reveal" style="transition-delay:.16s;">
-      <span class="n">03</span>
-      <div>
-        <h3>Desarrollo y lanzamiento</h3>
-        <p>Construcción, pruebas contigo, y publicación sin sorpresas.</p>
-      </div>
-    </div>
-  </div>
- </div>
-</section>
-
-<section class="section">
+<section class="section sky">
   <span class="doodle" style="width:26px;height:26px;top:12%;left:8%;" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1.6"><path d="M3 12c4-8 8 8 12 0s5-6 6-2"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="rgba(24,19,37,0.3)" stroke-width="1.6"><path d="M3 12c4-8 8 8 12 0s5-6 6-2"/></svg>
   </span>
   <span class="doodle" style="width:20px;height:20px;bottom:14%;right:10%;" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.35)" stroke="none"><path d="M12 2l1.2 6.8L20 10l-6.8 1.2L12 18l-1.2-6.8L4 10l6.8-1.2z"/></svg>
+    <svg viewBox="0 0 24 24" fill="rgba(24,19,37,0.3)" stroke="none"><path d="M12 2l1.2 6.8L20 10l-6.8 1.2L12 18l-1.2-6.8L4 10l6.8-1.2z"/></svg>
   </span>
   <span class="doodle" style="width:16px;height:16px;top:38%;right:24%;" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.6"><rect x="8" y="8" width="8" height="8" transform="rotate(45 12 12)"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="rgba(24,19,37,0.25)" stroke-width="1.6"><rect x="8" y="8" width="8" height="8" transform="rotate(45 12 12)"/></svg>
   </span>
   <span class="doodle" style="width:12px;height:12px;bottom:32%;left:20%;" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.3)" stroke="none"><circle cx="12" cy="12" r="6"/></svg>
+    <svg viewBox="0 0 24 24" fill="rgba(24,19,37,0.28)" stroke="none"><circle cx="12" cy="12" r="6"/></svg>
   </span>
   <span class="doodle" style="width:24px;height:24px;top:10%;left:40%;" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.6"><circle cx="12" cy="12" r="8"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="rgba(24,19,37,0.2)" stroke-width="1.6"><circle cx="12" cy="12" r="8"/></svg>
   </span>
  <div class="wrap">
   <span class="kicker reveal">Qué incluye</span>
