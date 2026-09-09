@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auditorías — IntelliTech</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,500;0,700;0,800;1,700;1,800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root{
+    --bg:#0c0a12;
+    --ink:#0c0a12;
+    --ink-2:#15121f;
+    --ink-3:#1c1829;
+    --muted:#9b95ac;
+    --accent-1:#ef3fb0;
+    --accent-2:#6a5cf2;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background:var(--ink);
+    color:#fff;
+    font-family:'Work Sans', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+  html{ scroll-behavior:smooth; }
+  .mono{ font-family:'JetBrains Mono', ui-monospace, monospace; }
+
+  .reveal{ opacity:0; transform:translateY(26px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+  .reveal.in{ opacity:1; transform:none; }
+
+  .wrap{ max-width:1240px; margin:0 auto; position:relative; }
+
+  header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0;
+  }
+  .brand{ display:flex; align-items:center; gap:9px; text-decoration:none; color:#fff; }
+  .brand .sq{ width:30px; height:30px; border-radius:9px; background:linear-gradient(160deg, var(--accent-1), var(--accent-2)); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .brand span{ font-weight:800; font-size:16px; }
+  .back{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:10px 18px; border-radius:999px;
+    background:rgba(255,255,255,0.1); color:#fff; font-weight:700; font-size:13px;
+    text-decoration:none; transition:transform .2s cubic-bezier(.34,1.56,.64,1), background .2s ease;
+  }
+  .back:hover{ transform:translateY(-2px) scale(1.04); background:rgba(255,255,255,0.18); }
+  .back svg{ width:13px; height:13px; }
+
+  /* ---- hero oscuro con foto ---- */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    padding:22px 20px 60px;
+    background:
+      linear-gradient(180deg, rgba(8,7,12,0.55) 0%, rgba(8,7,12,0.35) 40%, rgba(8,7,12,0.92) 100%),
+      url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+    overflow:hidden;
+  }
+  @media (min-width:760px){ .hero{ padding:28px 44px 90px; } }
+  .hero-top{ max-width:1240px; margin:0 auto; width:100%; }
+  .hero-bottom{ max-width:1240px; margin:0 auto; width:100%; }
+
+  .hero-kicker{ font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-1); }
+  .hero h1{
+    margin:14px 0 0;
+    font-size:64px;
+    font-style:italic;
+    font-weight:800;
+    line-height:0.94;
+    letter-spacing:-0.02em;
+    text-transform:uppercase;
+  }
+  @media (min-width:640px){ .hero h1{ font-size:120px; } }
+  @media (min-width:1100px){ .hero h1{ font-size:160px; } }
+
+  .hero-foot{ display:flex; flex-direction:column; gap:26px; border-top:1px solid rgba(255,255,255,0.16); padding-top:26px; }
+  @media (min-width:800px){ .hero-foot{ flex-direction:row; align-items:flex-end; justify-content:space-between; } }
+  .hero-foot p.lead{ margin:0; max-width:46ch; font-size:16px; line-height:1.6; color:rgba(255,255,255,0.75); }
+
+  .cta-pill{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:15px 26px;
+    border-radius:999px;
+    background:#fff; color:var(--ink);
+    font-weight:800; font-size:15px;
+    text-decoration:none;
+    transition:transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s ease;
+    flex-shrink:0;
+  }
+  .cta-pill:hover{ transform:translateY(-3px) scale(1.03); box-shadow:0 10px 26px rgba(0,0,0,0.35); }
+  .cta-pill:active{ transform:translateY(0) scale(0.98); }
+  .cta-pill .badge{ width:22px; height:22px; border-radius:50%; background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:center; transition:transform .25s ease; }
+  .cta-pill .badge svg{ width:11px; height:11px; }
+  .cta-pill:hover .badge{ transform:translateX(3px) rotate(8deg); }
+
+  /* ---- filosofía ---- */
+  .section{ width:100%; padding:64px 20px; position:relative; overflow:hidden; }
+  @media (min-width:760px){ .section{ padding:96px 44px; } }
+  .section.ink{ background:var(--ink); color:#fff; }
+  .section.panel{ background:var(--ink-2); color:#fff; }
+  .section.alt{ background:var(--ink-2); color:#fff; }
+  .section.finale{ background:radial-gradient(120% 160% at 50% 0%, #241b46 0%, #120e22 55%, #08060d 100%); color:#fff; }
+
+  .kicker{ font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-1); }
+
+  .philo p{
+    margin:22px 0 0; max-width:1000px;
+    font-size:26px; font-weight:500; line-height:1.4; letter-spacing:-0.01em;
+    color:rgba(255,255,255,0.35);
+  }
+  @media (min-width:640px){ .philo p{ font-size:38px; } }
+  .philo p b{ color:#fff; font-weight:500; }
+
+  /* ---- diagnóstico integral: dos columnas + stats ---- */
+  .diag-head{ display:grid; grid-template-columns:1fr; gap:20px; }
+  @media (min-width:800px){ .diag-head{ grid-template-columns:1fr 1fr; } }
+  .diag-head h2{ margin:14px 0 0; font-size:32px; font-style:italic; font-weight:800; letter-spacing:-0.01em; }
+  @media (min-width:640px){ .diag-head h2{ font-size:46px; } }
+  .diag-head p{ margin:0; font-size:15.5px; line-height:1.65; color:rgba(255,255,255,0.6); align-self:end; }
+
+  .stats-row{ margin-top:70px; display:grid; grid-template-columns:1fr; gap:36px; }
+  @media (min-width:700px){ .stats-row{ grid-template-columns:repeat(3,1fr); gap:24px; } }
+  .stat{ border-top:1px solid rgba(255,255,255,0.16); padding-top:18px; }
+  .stat .num{ font-size:56px; font-weight:800; font-style:italic; letter-spacing:-0.02em; line-height:1; }
+  .stat .num .unit{ font-size:26px; margin-left:2px; }
+  .stat h4{ margin:14px 0 0; font-size:15px; font-weight:700; }
+  .stat p{ margin:6px 0 0; font-size:13.5px; line-height:1.55; color:rgba(255,255,255,0.55); max-width:38ch; }
+
+  /* ---- feature block (panel + foto) ---- */
+  .feature{ display:grid; grid-template-columns:1fr; }
+  @media (min-width:860px){ .feature{ grid-template-columns:1fr 1.15fr; } }
+  .feature-panel{ background:var(--ink-2); color:#fff; padding:44px 32px; display:flex; flex-direction:column; justify-content:space-between; gap:34px; border-right:1px solid rgba(255,255,255,0.08); }
+  @media (min-width:760px){ .feature-panel{ padding:60px 48px; } }
+  .feature-panel .kicker{ opacity:.85; }
+  .feature-panel h3{ margin:14px 0 0; font-size:28px; font-style:italic; font-weight:800; letter-spacing:-0.01em; line-height:1.15; }
+  @media (min-width:640px){ .feature-panel h3{ font-size:34px; } }
+  .feature-panel p{ margin:16px 0 0; font-size:14.5px; line-height:1.65; color:rgba(255,255,255,0.6); max-width:40ch; }
+  .feature-cta{ display:inline-flex; align-items:center; gap:8px; align-self:flex-start; padding:13px 22px; border-radius:999px; background:#fff; color:var(--ink); font-weight:800; font-size:13.5px; text-decoration:none; transition:transform .2s cubic-bezier(.34,1.56,.64,1); }
+  .feature-cta:hover{ transform:translateY(-3px); }
+  .feature-photo{ position:relative; min-height:280px; background:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1400&auto=format&fit=crop') center/cover no-repeat; }
+  .feature-photo::after{ content:''; position:absolute; inset:0; background:linear-gradient(0deg, rgba(8,7,12,0.85) 0%, rgba(8,7,12,0.05) 55%); }
+  .feature-photo-caption{ position:absolute; left:24px; bottom:20px; z-index:1; }
+  .feature-photo-caption .mono{ font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-1); }
+  .feature-photo-caption p{ margin:4px 0 0; font-size:15px; font-weight:700; }
+
+  /* ---- proceso: banda de etiquetas ---- */
+  .process-bar{ display:flex; flex-wrap:wrap; gap:14px 34px; padding-bottom:36px; border-bottom:1px solid rgba(255,255,255,0.14); margin-bottom:0; }
+  .process-bar span{ font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,0.4); }
+  .process-bar span.on{ color:#fff; }
+
+  .steps{ margin-top:10px; display:grid; grid-template-columns:1fr; gap:0; }
+  .step{ display:flex; gap:22px; padding:28px 0; border-top:1px solid rgba(255,255,255,0.14); transition:padding-left .25s ease; }
+  .steps .step:last-child{ border-bottom:1px solid rgba(255,255,255,0.14); }
+  .step:hover{ padding-left:10px; }
+  .step .n{ font-family:'JetBrains Mono', monospace; color:var(--accent-1); font-weight:700; width:34px; flex-shrink:0; }
+  .step h3{ margin:0 0 6px; font-size:19px; font-style:italic; font-weight:800; }
+  .step p{ margin:0; font-size:14px; color:rgba(255,255,255,0.55); max-width:60ch; line-height:1.6; }
+
+  /* ---- qué incluye ---- */
+  .includes-grid{ margin-top:56px; display:grid; grid-template-columns:1fr; gap:14px; }
+  @media (min-width:700px){ .includes-grid{ grid-template-columns:1fr 1fr; } }
+  .includes-item{
+    display:flex; align-items:flex-start; gap:14px;
+    padding:20px; border-radius:16px;
+    background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
+    transition:transform .3s cubic-bezier(.16,1,.3,1), border-color .3s ease;
+  }
+  .includes-item:hover{ transform:translateY(-4px); border-color:var(--accent-1); }
+  .includes-check{ width:26px; height:26px; border-radius:50%; background:#fff; color:var(--ink); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .includes-check svg{ width:13px; height:13px; }
+  .includes-item h4{ margin:0; font-size:15px; font-style:italic; font-weight:800; }
+  .includes-item p{ margin:5px 0 0; font-size:13px; color:rgba(255,255,255,0.55); line-height:1.5; }
+
+  /* ---- faq ---- */
+  .section h2.plain{ margin:14px 0 0; font-size:32px; font-style:italic; font-weight:800; letter-spacing:-0.01em; }
+  @media (min-width:640px){ .section h2.plain{ font-size:48px; } }
+  .faq-list{ margin-top:50px; max-width:820px; }
+  details.faq-item{ border-top:1px solid rgba(255,255,255,0.14); padding:20px 0; }
+  .faq-list details.faq-item:last-child{ border-bottom:1px solid rgba(255,255,255,0.14); }
+  details.faq-item summary{
+    list-style:none; cursor:pointer;
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
+    font-size:16px; font-weight:700; font-style:italic;
+    transition:color .2s ease;
+  }
+  details.faq-item summary::-webkit-details-marker{ display:none; }
+  details.faq-item summary .plus{
+    flex-shrink:0; width:26px; height:26px; border-radius:50%;
+    background:rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center;
+    font-size:16px; font-weight:400; transition:transform .3s cubic-bezier(.34,1.56,.64,1), background .2s ease;
+  }
+  details.faq-item[open] summary .plus{ transform:rotate(135deg); background:#fff; color:var(--ink); }
+  details.faq-item summary:hover{ color:var(--accent-1); }
+  .faq-body{ margin:12px 0 0; font-size:14px; color:rgba(255,255,255,0.55); line-height:1.6; max-width:60ch; }
+
+  .closing{ text-align:center; }
+  .closing .wrap{ display:flex; flex-direction:column; align-items:center; }
+  .closing .cta-pill{ margin-top:30px; background:#fff; color:var(--ink); }
+  .closing .cta-pill .badge{ background:var(--ink); color:#fff; }
+  .closing p.sub{ margin:16px 0 0; max-width:52ch; color:rgba(255,255,255,0.65); font-size:15.5px; line-height:1.6; }
+
+  footer{ max-width:1240px; margin:0 auto; padding:44px 20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12px; color:rgba(255,255,255,0.4); }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-top">
+    <header>
+      <a class="brand" href="intellitech-build-v2.html">
+        <span class="sq" aria-hidden="true"></span>
+        <span>IntelliTech</span>
+      </a>
+      <a class="back" href="intellitech-build-v2.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Volver a inicio
+      </a>
+    </header>
+  </div>
+
+  <div class="hero-bottom">
+    <span class="hero-kicker reveal in">Servicio · Auditorías</span>
+    <h1 class="reveal in">Auditorías</h1>
+    <div class="hero-foot reveal in">
+      <p class="lead">Detectamos qué frena tu negocio y cómo arreglarlo: tecnología, producto y marketing analizados como un solo sistema, con un plan de acción claro al final.</p>
+      <a class="cta-pill" href="#contacto">
+        <span class="badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7M20 12H4"/></svg>
+        </span>
+        Pedir mi auditoría
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section ink philo">
+  <div class="wrap">
+    <span class="kicker reveal">Nuestra filosofía</span>
+    <p class="reveal"><b>Creemos que no se puede mejorar lo que no se mide.</b> Antes de proponer un solo cambio, entendemos a fondo cómo funciona tu negocio hoy — su tecnología, su producto y cómo llega a sus clientes.</p>
+  </div>
+</section>
+
+<section class="section ink" id="diagnostico">
+  <div class="wrap">
+    <span class="kicker reveal">Diagnóstico integral</span>
+    <div class="diag-head">
+      <h2 class="reveal">Una sola auditoría,<br>ninguna zona ciega.</h2>
+      <p class="reveal">Abordamos cada auditoría como un balance entre negocio, tecnología y experiencia de usuario. Las decisiones se priorizan por impacto real, no por checklists genéricas.</p>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat reveal">
+        <div class="num"><span class="counter" data-target="48">0</span><span class="unit">h</span></div>
+        <h4>Entrega inicial</h4>
+        <p>Primer informe con los hallazgos clave en menos de 48 horas desde que arrancamos.</p>
+      </div>
+      <div class="stat reveal" style="transition-delay:.08s;">
+        <div class="num"><span class="counter" data-target="12">0</span><span class="unit">+</span></div>
+        <h4>Áreas analizadas</h4>
+        <p>Desde rendimiento técnico y seguridad hasta conversión, SEO y coherencia de marca.</p>
+      </div>
+      <div class="stat reveal" style="transition-delay:.16s;">
+        <div class="num"><span class="counter" data-target="100">0</span><span class="unit">%</span></div>
+        <h4>Transparencia</h4>
+        <p>Cada hallazgo llega con evidencia y una recomendación concreta y accionable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="feature">
+    <div class="feature-panel">
+      <div>
+        <span class="kicker">Auditoría técnica</span>
+        <h3>Diagnóstico y hoja de ruta, en un mismo proceso.</h3>
+        <p>Nuestro enfoque conecta análisis técnico, de producto y de negocio — convirtiendo síntomas sueltos ("la web va lenta", "no vendemos online") en un plan priorizado y accionable.</p>
+      </div>
+      <a class="feature-cta" href="#contacto">
+        Explorar el servicio
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7M20 12H4"/></svg>
+      </a>
+    </div>
+    <div class="feature-photo" aria-hidden="true">
+      <div class="feature-photo-caption">
+        <span class="mono">Auditoría completa</span>
+        <p>De los datos a las decisiones.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section ink" id="proceso">
+  <div class="wrap">
+    <span class="kicker reveal">Cómo trabajamos</span>
+    <h2 class="plain reveal" style="margin-bottom:36px;">Un proceso, cuatro etapas.</h2>
+
+    <div class="process-bar reveal">
+      <span class="on">DESCUBRIMIENTO</span>
+      <span>ANÁLISIS</span>
+      <span>PLAN DE ACCIÓN</span>
+      <span>SEGUIMIENTO</span>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <span class="n">01</span>
+        <div>
+          <h3>Descubrimiento</h3>
+          <p>Entendemos tu negocio, tus objetivos y dónde sientes que algo no está funcionando como debería.</p>
+        </div>
+      </div>
+      <div class="step reveal" style="transition-delay:.05s;">
+        <span class="n">02</span>
+        <div>
+          <h3>Análisis</h3>
+          <p>Revisamos tecnología, producto, datos y marketing con herramientas y ojo experto — sin dar nada por sentado.</p>
+        </div>
+      </div>
+      <div class="step reveal" style="transition-delay:.1s;">
+        <span class="n">03</span>
+        <div>
+          <h3>Plan de acción</h3>
+          <p>Entregamos un informe priorizado: qué arreglar primero, por qué, y el impacto esperado de cada cambio.</p>
+        </div>
+      </div>
+      <div class="step reveal" style="transition-delay:.15s;">
+        <span class="n">04</span>
+        <div>
+          <h3>Seguimiento</h3>
+          <p>Te acompañamos en la implementación de las recomendaciones si decides seguir trabajando con nosotros.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap">
+    <span class="kicker reveal">Qué incluye</span>
+    <h2 class="plain reveal">Todo en un mismo informe</h2>
+    <div class="includes-grid">
+      <div class="includes-item reveal">
+        <span class="includes-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+        <div>
+          <h4>Auditoría técnica</h4>
+          <p>Rendimiento, seguridad y estabilidad de tu web, app o sistema actual.</p>
+        </div>
+      </div>
+      <div class="includes-item reveal" style="transition-delay:.05s;">
+        <span class="includes-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+        <div>
+          <h4>Auditoría de producto</h4>
+          <p>Experiencia de usuario, flujos clave y puntos donde se pierden clientes.</p>
+        </div>
+      </div>
+      <div class="includes-item reveal" style="transition-delay:.1s;">
+        <span class="includes-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+        <div>
+          <h4>Auditoría de marketing</h4>
+          <p>SEO, presencia digital y coherencia de marca frente a tu competencia.</p>
+        </div>
+      </div>
+      <div class="includes-item reveal" style="transition-delay:.15s;">
+        <span class="includes-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+        <div>
+          <h4>Plan priorizado</h4>
+          <p>Un documento claro con qué hacer primero y el impacto esperado de cada acción.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section ink">
+  <div class="wrap">
+    <span class="kicker reveal">Preguntas frecuentes</span>
+    <h2 class="plain reveal">Antes de empezar</h2>
+    <div class="faq-list">
+      <details class="faq-item reveal">
+        <summary>¿Cuánto tarda una auditoría?<span class="plus">+</span></summary>
+        <p class="faq-body">El primer informe con hallazgos clave llega en 48 horas; el informe completo con plan de acción, entre 5 y 10 días según el alcance.</p>
+      </details>
+      <details class="faq-item reveal" style="transition-delay:.05s;">
+        <summary>¿Necesito tener ya una web o producto?<span class="plus">+</span></summary>
+        <p class="faq-body">Sí, la auditoría analiza algo que ya existe. Si estás empezando de cero, te interesa más nuestro servicio de creación de webs.</p>
+      </details>
+      <details class="faq-item reveal" style="transition-delay:.1s;">
+        <summary>¿La auditoría incluye la implementación?<span class="plus">+</span></summary>
+        <p class="faq-body">No por defecto, pero podemos encargarnos de implementar las recomendaciones si decides seguir trabajando con nosotros después.</p>
+      </details>
+      <details class="faq-item reveal" style="transition-delay:.15s;">
+        <summary>¿Qué recibo exactamente al final?<span class="plus">+</span></summary>
+        <p class="faq-body">Un informe con los hallazgos, evidencia de cada uno, y un plan de acción priorizado por impacto y esfuerzo.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section closing finale" id="contacto">
+  <div class="wrap">
+    <span class="kicker reveal" style="color:#fff; opacity:.8;">Empecemos</span>
+    <h2 class="plain reveal">¿Auditamos tu negocio?</h2>
+    <p class="sub reveal">Cuéntanos qué crees que no está funcionando y te decimos cómo lo analizaríamos.</p>
+    <a class="cta-pill reveal" href="mailto:hola@intellitech.com">
+      <span class="badge" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7M20 12H4"/></svg>
+      </span>
+      Pedir mi auditoría
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span>IntelliTech — Auditorías</span>
+  <span>Sin zonas ciegas: medimos antes de proponer.</span>
+</footer>
+
+<div class="chat-widget" id="chatWidget">
+  <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Contacto rápido">
+    <div class="chat-panel-head">
+      <div class="chat-panel-avatar" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7M20 12H4"/></svg>
+      </div>
+      <div class="chat-panel-title">
+        <strong>IntelliTech</strong>
+        <span>Solemos responder el mismo día</span>
+      </div>
+      <button class="chat-panel-close" id="chatClose" aria-label="Cerrar chat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="chat-panel-body">
+      <div class="chat-msg">👋 ¡Hola! Cuéntanos qué necesitas auditar y te contestamos lo antes posible.</div>
+    </div>
+    <a class="chat-panel-cta" href="mailto:hola@intellitech.com">
+      Escribir por email
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+  <button class="chat-bubble" id="chatToggle" aria-label="Abrir chat" aria-expanded="false">
+    <span class="chat-tooltip">¿Hablamos de tu auditoría?</span>
+    <svg class="ic ic-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+    <svg class="ic ic-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+</div>
+<style>
+  .chat-widget{ position:fixed; right:22px; bottom:22px; z-index:999; }
+
+  .chat-bubble{
+    position:relative;
+    width:56px; height:56px; border-radius:50%;
+    background:var(--accent-1);
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; border:none; cursor:pointer;
+    box-shadow:0 12px 26px rgba(0,0,0,0.35);
+    animation:chatbounce 3.4s ease-in-out infinite;
+  }
+  .chat-widget.open .chat-bubble{ animation:none; }
+  .chat-bubble .ic{ width:23px; height:23px; position:absolute; transition:opacity .2s ease, transform .25s cubic-bezier(.34,1.56,.64,1); }
+  .chat-bubble .ic-close{ opacity:0; transform:rotate(-45deg) scale(.6); }
+  .chat-bubble .ic-chat{ opacity:1; transform:rotate(0) scale(1); }
+  .chat-widget.open .chat-bubble .ic-chat{ opacity:0; transform:rotate(45deg) scale(.6); }
+  .chat-widget.open .chat-bubble .ic-close{ opacity:1; transform:rotate(0) scale(1); }
+  @keyframes chatbounce{ 0%,78%,100%{ transform:translateY(0); } 88%{ transform:translateY(-9px); } }
+
+  .chat-tooltip{
+    position:absolute; right:68px; bottom:9px; top:auto;
+    background:#fff; color:#181325;
+    padding:9px 15px; border-radius:11px;
+    font-family:'Work Sans', sans-serif;
+    font-size:12.5px; font-weight:700; white-space:nowrap;
+    box-shadow:0 10px 24px rgba(0,0,0,0.2);
+    opacity:0; transform:translateX(6px);
+    transition:opacity .2s ease, transform .2s ease;
+    pointer-events:none;
+  }
+  .chat-bubble:hover .chat-tooltip{ opacity:1; transform:translateX(0); }
+  .chat-widget.open .chat-tooltip{ opacity:0 !important; }
+
+  .chat-panel{
+    position:absolute; right:0; bottom:70px;
+    width:min(320px, calc(100vw - 44px));
+    background:#fff; color:#181325;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 24px 60px rgba(0,0,0,0.35);
+    opacity:0; transform:translateY(14px) scale(.96);
+    transform-origin:bottom right;
+    pointer-events:none;
+    transition:opacity .28s cubic-bezier(.16,1,.3,1), transform .28s cubic-bezier(.16,1,.3,1);
+  }
+  .chat-widget.open .chat-panel{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+
+  .chat-panel-head{
+    display:flex; align-items:center; gap:10px;
+    padding:16px 16px;
+    background:#181325;
+    color:#fff;
+  }
+  .chat-panel-avatar{
+    width:34px; height:34px; border-radius:50%;
+    background:var(--accent-1);
+    color:#fff;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .chat-panel-avatar svg{ width:16px; height:16px; }
+  .chat-panel-title{ flex:1; min-width:0; }
+  .chat-panel-title strong{ display:block; font-size:14px; font-style:italic; }
+  .chat-panel-title span{ display:block; font-size:11px; opacity:.7; margin-top:1px; }
+  .chat-panel-close{
+    width:26px; height:26px; border-radius:50%; flex-shrink:0;
+    background:rgba(255,255,255,0.15); border:none; color:#fff; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:background .15s ease;
+  }
+  .chat-panel-close:hover{ background:rgba(255,255,255,0.3); }
+  .chat-panel-close svg{ width:13px; height:13px; }
+
+  .chat-panel-body{ padding:18px 16px; background:#f4f2f8; }
+  .chat-msg{
+    display:inline-block;
+    background:#fff;
+    border-radius:4px 14px 14px 14px;
+    padding:12px 14px;
+    font-family:'Work Sans', sans-serif;
+    font-size:13px; line-height:1.5; color:#181325;
+    box-shadow:0 4px 14px rgba(0,0,0,0.08);
+  }
+
+  .chat-panel-cta{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    margin:0; padding:14px 16px;
+    background:var(--accent-1); color:#fff;
+    font-family:'Work Sans', sans-serif; font-weight:800; font-size:13.5px;
+    text-decoration:none;
+  }
+  .chat-panel-cta:hover{ filter:brightness(0.95); }
+
+  @media (max-width:480px){
+    .chat-widget{ right:16px; bottom:16px; }
+    .chat-panel{ right:-4px; }
+  }
+  @media (prefers-reduced-motion: reduce){ .chat-bubble{ animation:none; } }
+</style>
+<script>
+  (function(){
+    var widget = document.getElementById('chatWidget');
+    var toggle = document.getElementById('chatToggle');
+    var close = document.getElementById('chatClose');
+    if (!widget || !toggle) return;
+    function setOpen(open){
+      widget.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    toggle.addEventListener('click', function(){ setOpen(!widget.classList.contains('open')); });
+    if (close) close.addEventListener('click', function(){ setOpen(false); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') setOpen(false); });
+    document.addEventListener('click', function(e){
+      if (widget.classList.contains('open') && !widget.contains(e.target)) setOpen(false);
+    });
+  })();
+
+  // reveal on scroll
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold:0.15 });
+    els.forEach(function(el){ io.observe(el); });
+  })();
+
+  // contadores animados
+  (function(){
+    var counters = document.querySelectorAll('.counter');
+    if (!counters.length) return;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function animate(el){
+      var target = parseInt(el.getAttribute('data-target'), 10) || 0;
+      if (reduced){ el.textContent = target; return; }
+      var start = null, duration = 1200;
+      function step(ts){
+        if (!start) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target);
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    var io = new IntersectionObserver(function(entries, obs){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ animate(e.target); obs.unobserve(e.target); }
+      });
+    }, { threshold:0.5 });
+    counters.forEach(function(el){ io.observe(el); });
+  })();
+</script>
+
+</body>
+</html>
