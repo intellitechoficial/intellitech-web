@@ -17,7 +17,7 @@
     --accent-2:#6a5cf2;
   }
   *{ box-sizing:border-box; }
-  html,body{ margin:0; padding:0; }
+  html,body{ margin:0; padding:0; background:var(--ink); }
   body{
     background:var(--ink);
     color:#fff;
@@ -25,7 +25,11 @@
     -webkit-font-smoothing:antialiased;
   }
   a{ color:inherit; }
-  html{ scroll-behavior:smooth; }
+  html{ scroll-behavior:smooth; scrollbar-color:var(--ink-3) var(--ink); scrollbar-width:thin; }
+  ::-webkit-scrollbar{ width:12px; }
+  ::-webkit-scrollbar-track{ background:var(--ink); }
+  ::-webkit-scrollbar-thumb{ background:var(--ink-3); border-radius:8px; }
+  ::-webkit-scrollbar-thumb:hover{ background:var(--accent-2); }
   .mono{ font-family:'JetBrains Mono', ui-monospace, monospace; }
 
   .reveal{ opacity:0; transform:translateY(26px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
@@ -66,7 +70,7 @@
   .hero-top{ max-width:1240px; margin:0 auto; width:100%; }
   .hero-bottom{ max-width:1240px; margin:0 auto; width:100%; }
 
-  .hero-kicker{ font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-1); }
+  .hero-kicker{ font-family:'JetBrains Mono', monospace; font-size:14px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-1); }
   .hero h1{
     margin:14px 0 0;
     font-size:64px;
@@ -99,23 +103,14 @@
   .cta-pill .badge svg{ width:11px; height:11px; }
   .cta-pill:hover .badge{ transform:translateX(3px) rotate(8deg); }
 
-  /* ---- filosofía ---- */
-  .section{ width:100%; padding:64px 20px; position:relative; overflow:hidden; }
-  @media (min-width:760px){ .section{ padding:96px 44px; } }
+  .section{ width:100%; padding:32px 20px; position:relative; overflow:hidden; }
+  @media (min-width:760px){ .section{ padding:48px 44px; } }
   .section.ink{ background:var(--ink); color:#fff; }
   .section.panel{ background:var(--ink-2); color:#fff; }
   .section.alt{ background:var(--ink-2); color:#fff; }
   .section.finale{ background:radial-gradient(120% 160% at 50% 0%, #241b46 0%, #120e22 55%, #08060d 100%); color:#fff; }
 
-  .kicker{ font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-1); }
-
-  .philo p{
-    margin:22px 0 0; max-width:1000px;
-    font-size:26px; font-weight:500; line-height:1.4; letter-spacing:-0.01em;
-    color:rgba(255,255,255,0.35);
-  }
-  @media (min-width:640px){ .philo p{ font-size:38px; } }
-  .philo p b{ color:#fff; font-weight:500; }
+  .kicker{ font-family:'JetBrains Mono', monospace; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-1); }
 
   /* ---- diagnóstico integral: dos columnas + stats ---- */
   .diag-head{ display:grid; grid-template-columns:1fr; gap:20px; }
@@ -228,7 +223,7 @@
     <span class="hero-kicker reveal in">Servicio · Auditorías</span>
     <h1 class="reveal in">Auditorías</h1>
     <div class="hero-foot reveal in">
-      <p class="lead">Detectamos qué frena tu negocio y cómo arreglarlo: tecnología, producto y marketing analizados como un solo sistema, con un plan de acción claro al final.</p>
+      <p class="lead">Detectamos qué frena tu negocio:<br>Analizamos tecnología, producto y marketing como un solo sistema para tener un proceso optimizado<br>y te entregamos un plan de acción claro.</p>
       <a class="cta-pill" href="#contacto">
         <span class="badge" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7M20 12H4"/></svg>
@@ -236,13 +231,6 @@
         Pedir mi auditoría
       </a>
     </div>
-  </div>
-</section>
-
-<section class="section ink philo">
-  <div class="wrap">
-    <span class="kicker reveal">Nuestra filosofía</span>
-    <p class="reveal"><b>Creemos que no se puede mejorar lo que no se mide.</b> Antes de proponer un solo cambio, entendemos a fondo cómo funciona tu negocio hoy — su tecnología, su producto y cómo llega a sus clientes.</p>
   </div>
 </section>
 
