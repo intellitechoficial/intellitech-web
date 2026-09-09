@@ -56,7 +56,7 @@
   /* ---- hero oscuro con foto ---- */
   .hero{
     position:relative;
-    min-height:92vh;
+    min-height:100vh;
     display:flex;
     flex-direction:column;
     justify-content:space-between;
@@ -85,7 +85,7 @@
 
   .hero-foot{ display:flex; flex-direction:column; gap:26px; border-top:1px solid rgba(255,255,255,0.16); padding-top:26px; }
   @media (min-width:800px){ .hero-foot{ flex-direction:row; align-items:flex-end; justify-content:space-between; } }
-  .hero-foot p.lead{ margin:0; max-width:46ch; font-size:16px; line-height:1.6; color:rgba(255,255,255,0.75); }
+  .hero-foot p.lead{ margin:0; max-width:96ch; font-size:16px; line-height:1.6; color:rgba(255,255,255,0.75); }
 
   .cta-pill{
     display:inline-flex; align-items:center; gap:10px;
@@ -135,11 +135,11 @@
   .feature-panel .kicker{ opacity:.85; }
   .feature-panel h3{ margin:14px 0 0; font-size:28px; font-style:italic; font-weight:800; letter-spacing:-0.01em; line-height:1.15; }
   @media (min-width:640px){ .feature-panel h3{ font-size:34px; } }
-  .feature-panel p{ margin:16px 0 0; font-size:14.5px; line-height:1.65; color:rgba(255,255,255,0.6); max-width:40ch; }
+  .feature-panel p{ margin:16px 0 0; font-size:14.5px; line-height:1.65; color:rgba(255,255,255,0.6); max-width:68ch; }
   .feature-cta{ display:inline-flex; align-items:center; gap:8px; align-self:flex-start; padding:13px 22px; border-radius:999px; background:#fff; color:var(--ink); font-weight:800; font-size:13.5px; text-decoration:none; transition:transform .2s cubic-bezier(.34,1.56,.64,1); }
   .feature-cta:hover{ transform:translateY(-3px); }
-  .feature-photo{ position:relative; min-height:280px; background:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1400&auto=format&fit=crop') center/cover no-repeat; }
-  .feature-photo::after{ content:''; position:absolute; inset:0; background:linear-gradient(0deg, rgba(8,7,12,0.85) 0%, rgba(8,7,12,0.05) 55%); }
+  .feature-photo{ position:relative; min-height:280px; background:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1400&auto=format&fit=crop') left center/125% auto no-repeat; }
+  .feature-photo::after{ content:''; position:absolute; inset:0; background:linear-gradient(0deg, rgba(8,7,12,0.88) 0%, rgba(8,7,12,0.08) 50%); }
   .feature-photo-caption{ position:absolute; left:24px; bottom:20px; z-index:1; }
   .feature-photo-caption .mono{ font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-1); }
   .feature-photo-caption p{ margin:4px 0 0; font-size:15px; font-weight:700; }
@@ -223,7 +223,7 @@
     <span class="hero-kicker reveal in">Servicio · Auditorías</span>
     <h1 class="reveal in">Auditorías</h1>
     <div class="hero-foot reveal in">
-      <p class="lead">Detectamos qué frena tu negocio:<br>Analizamos tecnología, producto y marketing como un solo sistema para tener un proceso optimizado<br>y te entregamos un plan de acción claro.</p>
+      <p class="lead">Detectamos qué frena tu negocio: Analizamos tecnología, producto y marketing<br>como un solo sistema para tener un proceso optimizado y te entregamos un plan de acción claro.</p>
       <a class="cta-pill" href="#contacto">
         <span class="badge" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5l7 7-7 7M20 12H4"/></svg>
@@ -268,7 +268,7 @@
       <div>
         <span class="kicker">Auditoría técnica</span>
         <h3>Diagnóstico y hoja de ruta, en un mismo proceso.</h3>
-        <p>Nuestro enfoque conecta análisis técnico, de producto y de negocio — convirtiendo síntomas sueltos ("la web va lenta", "no vendemos online") en un plan priorizado y accionable.</p>
+        <p>Nuestro enfoque conecta análisis técnico, de producto y de negocio,<br>convirtiendo síntomas sueltos en un plan priorizado y accionable.</p>
       </div>
       <a class="feature-cta" href="#contacto">
         Explorar el servicio
