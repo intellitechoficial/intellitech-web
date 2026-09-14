@@ -376,47 +376,28 @@
   .copy h1{
     margin:0;
     font-family:'Work Sans', sans-serif;
-    line-height:1.02;
+    line-height:1.15;
     letter-spacing:-0.02em;
     text-wrap:balance;
-  }
-  .copy h1 .light{
-    position:relative;
-    display:block;
-    font-weight:400;
-    color:rgba(28,26,36,0.62);
-    font-size:24px;
-    text-wrap:balance;
-  }
-  .copy h1 .bold{
-    position:relative;
-    display:block;
     font-weight:800;
     color:#0e0c16;
     font-size:25px;
-    text-wrap:balance;
   }
-  @media (min-width:640px){
-    .copy h1 .light{ font-size:34px; }
-    .copy h1 .bold{ font-size:42px; }
+  @media (min-width:640px){ .copy h1{ font-size:42px; } }
+  @media (min-width:1024px){ .copy h1{ font-size:58px; } }
+
+  .hero-word{
+    display:inline-block;
+    font-style:italic;
+    font-weight:800;
+    background:linear-gradient(160deg, var(--accent-1,#ef3fb0), var(--accent-2,#6a5cf2));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    transition:opacity 0.3s ease, transform 0.3s ease;
   }
-  @media (min-width:1024px){
-    .copy h1 .light{ font-size:42px; }
-    .copy h1 .bold{ font-size:58px; }
-  }
-  .copy h1 .en{ display:block; transition:opacity 0.25s ease; }
-  .copy h1 .es{
-    display:block;
-    position:absolute;
-    top:0; left:0;
-    width:100%;
-    opacity:0;
-    transition:opacity 0.25s ease;
-    pointer-events:none;
-  }
-  .copy h1:hover{ cursor:pointer; }
-  .copy h1:hover .en{ opacity:0; }
-  .copy h1:hover .es{ opacity:1; }
+  .hero-word.switching{ opacity:0; transform:translateY(6px); }
+
   .copy p{
     margin:22px 0 0;
     font-size:16px;
@@ -1037,16 +1018,7 @@
 
   <div class="stage">
     <div class="copy">
-      <h1 class="reveal" style="animation-delay:.1s">
-        <span class="light">
-          <span class="en">Ideas that become business:</span>
-          <span class="es">Ideas que se convierten en negocio:</span>
-        </span>
-        <span class="bold">
-          <span class="en">web, software, AI, and marketing in one place</span>
-          <span class="es">web, software, IA y marketing en un solo lugar</span>
-        </span>
-      </h1>
+      <h1 class="reveal" style="animation-delay:.1s">Ideas que se convierten en <span class="hero-word" id="heroWord">realidad</span>.</h1>
       <p class="reveal" style="animation-delay:.2s; font-style:italic">IntelliTech turns a prompt into a production agent<br>reasoning, tools, and memory wired together automatically.</p>
       <a class="nav-cta reveal" style="animation-delay:.3s; margin-top:10px" href="#">
         <span class="circle" aria-hidden="true">
@@ -1351,5 +1323,24 @@
     window.addEventListener('resize', function(){
       if (window.innerWidth > 759) setOpen(false);
     });
+  })();
+</script>
+
+<script>
+  (function(){
+    var el = document.getElementById('heroWord');
+    if (!el) return;
+    var words = ['realidad', 'proyectos', 'empresas', 'marcas', 'momentos'];
+    var i = 0;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setInterval(function(){
+      i = (i + 1) % words.length;
+      if (reduced){ el.textContent = words[i]; return; }
+      el.classList.add('switching');
+      setTimeout(function(){
+        el.textContent = words[i];
+        el.classList.remove('switching');
+      }, 300);
+    }, 3000);
   })();
 </script>
