@@ -121,15 +121,27 @@
   .brand-btn.no-transition, .brand-btn.no-transition *{ transition:none !important; }
   @media (max-width:759px){
     header{ padding:20px 14px 12px; gap:8px; }
-    .brand{ gap:4px; margin-left:26px; }
+    .brand{ gap:4px; margin-left:0; }
     .brand-btn{ width:34px; height:36px; }
-    .brand-btn:hover, .brand-btn.intro-open{ width:106px; }
+    .brand-btn:hover, .brand-btn.intro-open{ width:34px !important; }
     .brand-logo-half{ height:21px; flex-shrink:0; }
     .brand-logo-half.right{ height:20px; top:-6px; }
-    .brand-btn:hover .brand-logo-half.right, .brand-btn.intro-open .brand-logo-half.right{ top:0; }
+    .brand-btn:hover .brand-logo-half.right, .brand-btn.intro-open .brand-logo-half.right{ top:-6px !important; }
     .brand-name{ font-size:12px; }
-    .brand-btn:hover .brand-name, .brand-btn.intro-open .brand-name{ width:auto; opacity:1; margin:0 0 0 4px; flex-shrink:0; }
+    .brand-btn:hover .brand-name, .brand-btn.intro-open .brand-name{ width:0 !important; opacity:0 !important; margin:0 !important; }
     .social-links{ display:none; }
+
+    .mobile-title{
+      display:block;
+      position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+      font-family:'Work Sans', sans-serif;
+      font-weight:800;
+      font-size:16px;
+      letter-spacing:-0.01em;
+      color:#15121d;
+      white-space:nowrap;
+      pointer-events:none;
+    }
 
     .menu-toggle{
       display:flex;
@@ -138,7 +150,6 @@
       align-items:center; justify-content:center;
       flex-direction:column; gap:5px;
       background:none; border:none; padding:0; cursor:pointer;
-      z-index:21;
     }
     .menu-toggle span{
       display:block; width:20px; height:2px; border-radius:2px;
@@ -149,53 +160,47 @@
     .menu-toggle[aria-expanded="true"] span:nth-child(2){ opacity:0; }
     .menu-toggle[aria-expanded="true"] span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
 
-    .mobile-nav-backdrop{
-      position:fixed; inset:0;
-      background:rgba(8,6,13,0.45);
-      opacity:0; visibility:hidden;
-      transition:opacity .25s ease, visibility .25s ease;
-      z-index:19;
-    }
-    .mobile-nav-backdrop.open{ opacity:1; visibility:visible; }
+    header.menu-open{ z-index:1001; }
 
     .mobile-nav{
-      position:absolute; top:100%; left:14px; right:14px; margin-top:8px;
-      background:#15121d;
-      border-radius:18px;
-      padding:10px;
-      display:flex; flex-direction:column; gap:4px;
-      opacity:0; visibility:hidden; transform:translateY(-8px);
-      transition:opacity .25s ease, transform .25s ease, visibility .25s ease;
-      z-index:20;
-      box-shadow:0 20px 40px rgba(8,6,13,0.35);
+      position:fixed; inset:0;
+      background:var(--bg);
+      padding:100px 24px 32px;
+      display:flex; flex-direction:column; gap:12px;
+      overflow-y:auto;
+      -webkit-overflow-scrolling:touch;
+      opacity:0; visibility:hidden; transform:translateY(-10px);
+      transition:opacity .3s ease, transform .3s ease, visibility .3s ease;
+      z-index:1000;
     }
     .mobile-nav.open{ opacity:1; visibility:visible; transform:translateY(0); }
     .mobile-nav-link{
-      display:block;
-      padding:13px 16px;
-      border-radius:12px;
-      color:#fff;
+      display:flex; align-items:center; justify-content:center;
+      padding:16px 20px;
+      border-radius:999px;
+      border:2px solid #15121d;
+      background:#fff;
+      color:#15121d;
       font-family:'JetBrains Mono', ui-monospace, monospace;
-      font-size:14px;
+      font-size:15px;
       letter-spacing:0.02em;
       text-decoration:none;
+      box-shadow:3px 3px #15121d;
     }
     .mobile-nav-link.active{
-      background:linear-gradient(160deg, var(--accent-1,#ef3fb0), var(--accent-2,#6a5cf2));
-    }
-    .mobile-nav-link:not(.active):active{
-      background:rgba(255,255,255,0.08);
+      background:#15121d;
+      color:#fff;
     }
     .mobile-nav-social{
-      display:flex; align-items:center; justify-content:center; gap:12px;
-      padding:12px 4px 4px; margin-top:4px;
-      border-top:1px solid rgba(255,255,255,0.12);
+      display:flex; align-items:center; justify-content:center; gap:16px;
+      padding:24px 4px 4px; margin-top:8px;
+      border-top:1px solid rgba(21,18,29,0.12);
     }
-    .mobile-nav-social .social-btn{ width:36px; height:36px; }
+    .mobile-nav-social .social-btn{ width:40px; height:40px; }
   }
 
   @media (min-width:760px){
-    .menu-toggle, .mobile-nav-backdrop, .mobile-nav{ display:none !important; }
+    .menu-toggle, .mobile-nav, .mobile-title{ display:none !important; }
   }
   nav{ display:none; }
   @media (min-width:780px){ nav{ display:flex; } }
@@ -944,6 +949,7 @@
         <img class="brand-logo-half right" src="data:image/png;base64,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" alt="" />
       </a>
     </div>
+      <span class="mobile-title" aria-hidden="true">IntelliTech</span>
       <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
         <span></span><span></span><span></span>
       </button>
@@ -980,31 +986,31 @@
         <svg class="social-svg" viewBox="0 0 576 512" width="17"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
       </a>
     </div>
-    <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
-    <div class="mobile-nav" id="mobileNav">
-      <a class="mobile-nav-link active" href="intellitech-build-v2.html">Inicio</a>
-      <a class="mobile-nav-link" href="intellitech-build-v2.html#servicios">Servicios</a>
-      <a class="mobile-nav-link" href="contacto.html">Contacto</a>
-      <a class="mobile-nav-link" href="quienes-somos.html">Conócenos</a>
-      <div class="mobile-nav-social">
-        <a class="social-btn" href="https://www.instagram.com/intelliteches/" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg class="social-svg" viewBox="0 0 448 512" width="17"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
-        </a>
-        <a class="social-btn" href="#" target="_blank" rel="noopener" aria-label="X (Twitter)">
-          <svg class="social-svg" viewBox="0 0 512 512" width="15"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
-        </a>
-        <a class="social-btn" href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <svg class="social-svg" viewBox="0 0 448 512" width="16"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
-        </a>
-        <a class="social-btn" href="https://www.tiktok.com/@intelliteches" target="_blank" rel="noopener" aria-label="TikTok">
-          <svg class="social-svg" viewBox="0 0 448 512" width="16"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>
-        </a>
-        <a class="social-btn" href="https://www.youtube.com/@IntelliTeches" target="_blank" rel="noopener" aria-label="YouTube">
-          <svg class="social-svg" viewBox="0 0 576 512" width="17"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
-        </a>
-      </div>
-    </div>
   </header>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a class="mobile-nav-link active" href="intellitech-build-v2.html">Inicio</a>
+    <a class="mobile-nav-link" href="intellitech-build-v2.html#servicios">Servicios</a>
+    <a class="mobile-nav-link" href="contacto.html">Contacto</a>
+    <a class="mobile-nav-link" href="quienes-somos.html">Conócenos</a>
+    <div class="mobile-nav-social">
+      <a class="social-btn" href="https://www.instagram.com/intelliteches/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg class="social-svg" viewBox="0 0 448 512" width="17"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+      </a>
+      <a class="social-btn" href="#" target="_blank" rel="noopener" aria-label="X (Twitter)">
+        <svg class="social-svg" viewBox="0 0 512 512" width="15"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+      </a>
+      <a class="social-btn" href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg class="social-svg" viewBox="0 0 448 512" width="16"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
+      </a>
+      <a class="social-btn" href="https://www.tiktok.com/@intelliteches" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg class="social-svg" viewBox="0 0 448 512" width="16"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>
+      </a>
+      <a class="social-btn" href="https://www.youtube.com/@IntelliTeches" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg class="social-svg" viewBox="0 0 576 512" width="17"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+      </a>
+    </div>
+  </div>
 
   <div class="card reveal" style="animation-delay:.3s">
     <div class="card-visual" aria-hidden="true">
@@ -1320,16 +1326,15 @@
   (function(){
     var toggle = document.getElementById('menuToggle');
     var menu = document.getElementById('mobileNav');
-    var backdrop = document.getElementById('mobileNavBackdrop');
-    if (!toggle || !menu || !backdrop) return;
+    var header = document.querySelector('header');
+    if (!toggle || !menu || !header) return;
     function setOpen(open){
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       menu.classList.toggle('open', open);
-      backdrop.classList.toggle('open', open);
+      header.classList.toggle('menu-open', open);
       document.body.style.overflow = open ? 'hidden' : '';
     }
     toggle.addEventListener('click', function(){ setOpen(!menu.classList.contains('open')); });
-    backdrop.addEventListener('click', function(){ setOpen(false); });
     menu.querySelectorAll('.mobile-nav-link').forEach(function(link){
       link.addEventListener('click', function(){ setOpen(false); });
     });
