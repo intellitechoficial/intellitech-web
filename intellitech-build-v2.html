@@ -368,6 +368,7 @@
   }
   @media (min-width:1024px){ .copy{ max-width:50rem; } }
   @media (min-width:760px){ .copy{ margin-top:8vh; } }
+  @media (max-width:759px){ .copy{ margin-top:18px; padding-bottom:20px; } }
 
   .copy h1{
     margin:0;
@@ -421,6 +422,7 @@
     max-width:60ch;
   }
   @media (min-width:1024px){ .copy p{ font-size:19px; max-width:60ch; } }
+  @media (max-width:759px){ .copy p{ margin-top:12px; font-size:13.5px; line-height:1.45; } }
 
   /* Mismo estilo del menú (.wrapper), aplicado al botón Saber más */
   .cta {
@@ -868,12 +870,16 @@
     .service-books{
       display:grid;
       grid-template-columns:1fr 1fr;
-      gap:10px;
-      max-width:300px;
+      gap:8px;
+      max-width:230px;
+      margin-top:16px;
       margin-left:auto;
       margin-right:auto;
     }
     .book{ width:100%; height:auto; aspect-ratio:172/238; }
+    .book-face{ padding:9px; }
+    .book-face .cv-icon{ width:20px; height:20px; margin-bottom:5px; }
+    .book-face span{ font-size:11px; }
   }
 
   /* ---- Banner de logos de clientes ---- */
