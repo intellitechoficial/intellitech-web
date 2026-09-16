@@ -17,6 +17,8 @@
     --green:#22a37a;
     --purple:#7b5cf0;
     --brown:#f0672a;
+    --salmon:#fa8072;
+    --red:#e0201c;
     --hair:rgba(17,17,17,0.14);
   }
 
@@ -194,7 +196,7 @@
     gap:14px;
   }
   @media (min-width:640px){ .bento-grid{ grid-template-columns:1fr 1fr; } }
-  @media (min-width:980px){ .bento-grid{ grid-template-columns:repeat(3,1fr); } }
+  @media (min-width:980px){ .bento-grid{ grid-template-columns:repeat(4,1fr); } }
 
   .bento-item{
     display:flex; align-items:center; justify-content:space-between;
@@ -220,6 +222,8 @@
   .bento-item.c-ink{ background:var(--ink); color:#fff; }
   .bento-item.c-purple{ background:var(--purple); color:#fff; }
   .bento-item.c-brown{ background:var(--brown); color:#fff; }
+  .bento-item.c-salmon{ background:var(--salmon); color:#fff; }
+  .bento-item.c-red{ background:var(--red); color:#fff; }
 
   /* ---- coverflow de servicios ---- */
   .coverflow-section{ margin:0 auto; padding:0 0 50px; }
@@ -273,7 +277,7 @@
   }
   .cf-photo{
     height:130px;
-    margin-top:-32px;
+    margin-top:-43px;
     background-size:cover;
     background-position:center;
     border-bottom:2px solid var(--ink);
@@ -289,6 +293,8 @@
   .cf-card.cf-green .cf-body{ background:var(--green); color:#fff; }
   .cf-card.cf-purple .cf-body{ background:var(--purple); color:#fff; }
   .cf-card.cf-pink .cf-body{ background:var(--pink); color:#fff; }
+  .cf-card.cf-salmon .cf-body{ background:var(--salmon); color:#fff; }
+  .cf-card.cf-red .cf-body{ background:var(--red); color:#fff; }
 
   .cf-modal-backdrop{
     position:fixed; inset:0;
@@ -338,7 +344,7 @@
     transition:top .5s cubic-bezier(.16,1,.3,1), left .5s cubic-bezier(.16,1,.3,1), width .5s cubic-bezier(.16,1,.3,1), height .5s cubic-bezier(.16,1,.3,1), opacity .3s ease;
   }
   .cf-modal-card .cf-tab{ font-size:12px; padding:8px 16px; margin:18px 0 0 18px; }
-  .cf-modal-card .cf-photo{ flex:1 1 auto; margin-top:-34px; }
+  .cf-modal-card .cf-photo{ flex:1 1 auto; margin-top:-56px; }
   .cf-modal-card .cf-body{ padding:26px 28px 30px; flex-shrink:0; }
   .cf-modal-card .cf-body h3{ font-size:clamp(22px,3.4vw,32px); margin-bottom:10px; }
   .cf-modal-card .cf-body p{ font-size:clamp(13px,1.6vw,16px); line-height:1.6; }
@@ -403,9 +409,11 @@
     <a class="bento-item c-blue" href="#" data-service="rebranding">Re-Branding <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg></a>
     <a class="bento-item c-brown" href="#" data-service="logos">Logos <span class="emoji">✦</span></a>
     <a class="bento-item c-green" href="#" data-service="videos">Vídeos con IA <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M10 9l5 3-5 3V9z"/></svg></a>
+    <a class="bento-item c-salmon" href="#" data-service="vinilos">Vinilos <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"/><path d="M3 9h18M9 21V9"/></svg></a>
     <a class="bento-item c-yellow" href="#" data-service="imagenes">Imágenes con IA <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></a>
     <a class="bento-item c-purple" href="#" data-service="redes">Redes Sociales <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51L8.59 10.49"/></svg></a>
     <a class="bento-item c-pink" href="#" data-service="tarjetas">Diseño de tarjetas <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></a>
+    <a class="bento-item c-red" href="#" data-service="rotulos">Rótulos <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l3-4h12l3 4v13a1 1 0 01-1 1H4a1 1 0 01-1-1V7z"/><path d="M3 7h18M9 21V11h6v10"/></svg></a>
   </div>
 </section>
 
@@ -427,7 +435,7 @@
         img:'https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=500&auto=format&fit=crop' },
       { slug:'videos', color:'cf-green',  tab:'Servicio 03', title:'Vídeos con IA',
         desc:'Vídeos generados con IA, listos para campañas y redes sociales.',
-        img:'https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=500&auto=format&fit=crop' },
+        img:'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=500&auto=format&fit=crop' },
       { slug:'imagenes', color:'cf-yellow', tab:'Servicio 04', title:'Imágenes con IA',
         desc:'Imágenes generadas con IA a medida para tus campañas.',
         img:'https://images.unsplash.com/photo-1618004912476-29818d81ae2e?q=80&w=500&auto=format&fit=crop' },
@@ -436,7 +444,13 @@
         img:'https://images.unsplash.com/photo-1724862936518-ae7fcfc052c1?q=80&w=500&auto=format&fit=crop' },
       { slug:'tarjetas', color:'cf-pink',   tab:'Servicio 06', title:'Diseño de tarjetas',
         desc:'Tarjetas de presentación con un diseño que se recuerda.',
-        img:'https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?q=80&w=500&auto=format&fit=crop' }
+        img:'assets/tarjetas-intellitech.jpg' },
+      { slug:'vinilos', color:'cf-salmon', tab:'Servicio 07', title:'Vinilos',
+        desc:'Vinilos decorativos y rotulación de vehículos con acabado profesional.',
+        img:'https://images.unsplash.com/photo-1711725116642-9f18ffd5b870?q=80&w=500&auto=format&fit=crop' },
+      { slug:'rotulos', color:'cf-red',   tab:'Servicio 08', title:'Rótulos',
+        desc:'Rótulos para locales y negocios que hacen destacar tu marca.',
+        img:'https://images.unsplash.com/photo-1543949144-a8b18c58a635?q=80&w=500&auto=format&fit=crop' }
     ];
 
     var track = document.getElementById('cfTrack');
