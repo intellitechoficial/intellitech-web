@@ -457,8 +457,136 @@
     border:1px solid rgba(255,255,255,0.14);
     backdrop-filter:blur(14px);
     box-shadow:0 24px 60px rgba(0,0,0,0.45);
+    cursor:pointer;
+    transition:transform .25s ease, box-shadow .25s ease;
   }
+  .card:hover{ transform:translateY(-3px); box-shadow:0 28px 70px rgba(0,0,0,0.5); }
   @media (min-width:760px){ .card{ display:block; right:44px; top:170px; width:320px; } }
+
+  /* ---- Flashback de servicios ---- */
+  .flashback-overlay{
+    position:fixed; inset:0; z-index:1000;
+    display:flex; align-items:center; justify-content:center;
+    padding:24px;
+    background:rgba(8,6,13,0.86);
+    backdrop-filter:blur(16px);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .35s ease;
+  }
+  .flashback-overlay.show{ opacity:1; pointer-events:auto; }
+
+  .flashback-close{
+    position:fixed; top:22px; right:22px;
+    width:42px; height:42px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,0.2);
+    background:rgba(255,255,255,0.06);
+    color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    opacity:0; transform:scale(.8);
+    transition:opacity .25s ease, transform .25s ease, background .2s ease;
+    z-index:1002;
+  }
+  .flashback-overlay.show .flashback-close{ opacity:1; transform:scale(1); }
+  .flashback-close:hover{ background:rgba(255,255,255,0.16); }
+  .flashback-close svg{ width:16px; height:16px; }
+
+  .flashback-stage{ position:relative; width:100%; max-width:720px; }
+
+  .flashback-flash{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:18px;
+    text-align:center;
+  }
+  .flashback-icon-wrap{
+    width:76px; height:76px;
+    border-radius:22px;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    box-shadow:0 12px 40px rgba(239,63,176,0.35);
+    transform:scale(1);
+  }
+  .flashback-icon-wrap svg{ width:36px; height:36px; color:#fff; }
+  .flashback-flash.pulse .flashback-icon-wrap{ animation:fbPop .18s ease; }
+  @keyframes fbPop{ 0%{ transform:scale(0.75); opacity:.4; } 60%{ transform:scale(1.08); opacity:1; } 100%{ transform:scale(1); } }
+  .flashback-kicker{
+    font-family:'JetBrains Mono', ui-monospace, monospace;
+    font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    color:rgba(243,238,249,0.45);
+  }
+  .flashback-name{
+    margin:0;
+    font-family:'Work Sans', sans-serif;
+    font-weight:800;
+    font-size:clamp(28px,5vw,44px);
+    color:#fff;
+    letter-spacing:-0.01em;
+  }
+
+  .flashback-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+    opacity:0;
+  }
+  @media (min-width:640px){ .flashback-grid{ grid-template-columns:1fr 1fr; } }
+  .flashback-grid.show{ opacity:1; }
+
+  .flashback-heading{
+    text-align:center;
+    margin:0 0 22px;
+    font-family:'Work Sans', sans-serif;
+    font-weight:800;
+    font-size:clamp(20px,3vw,28px);
+    color:#fff;
+    opacity:0;
+    transform:translateY(6px);
+    transition:opacity .4s ease, transform .4s ease;
+  }
+  .flashback-heading.show{ opacity:1; transform:translateY(0); }
+
+  .fb-card{
+    position:relative;
+    padding:22px;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,0.12);
+    overflow:hidden;
+    text-decoration:none;
+    opacity:0;
+    transform:translateY(14px) scale(.97);
+    transition:opacity .4s ease, transform .4s ease;
+  }
+  .flashback-grid.show .fb-card{ opacity:1; transform:translateY(0) scale(1); }
+  .flashback-grid.show .fb-card:nth-child(1){ transition-delay:.05s; }
+  .flashback-grid.show .fb-card:nth-child(2){ transition-delay:.13s; }
+  .flashback-grid.show .fb-card:nth-child(3){ transition-delay:.21s; }
+  .flashback-grid.show .fb-card:nth-child(4){ transition-delay:.29s; }
+  .fb-card:hover{ border-color:rgba(255,255,255,0.28); }
+  .fb-card.cv-audit{
+    background-image:
+      radial-gradient(115% 95% at 12% 8%, rgba(106,92,242,0.55) 0%, rgba(106,92,242,0) 55%),
+      radial-gradient(140% 140% at 20% 0%, #241b46 0%, #120e22 55%, #08060d 100%);
+  }
+  .fb-card.cv-webs{
+    background-image:
+      radial-gradient(115% 95% at 88% 8%, rgba(239,63,176,0.5) 0%, rgba(239,63,176,0) 55%),
+      radial-gradient(140% 140% at 20% 0%, #241b46 0%, #120e22 55%, #08060d 100%);
+  }
+  .fb-card.cv-ia{
+    background-image:
+      linear-gradient(135deg, rgba(239,63,176,0.55) 0%, rgba(106,92,242,0.4) 45%, rgba(18,14,34,0) 72%),
+      radial-gradient(140% 140% at 20% 0%, #241b46 0%, #120e22 55%, #08060d 100%);
+  }
+  .fb-card.cv-marketing{
+    background-image:
+      radial-gradient(115% 95% at 82% 92%, rgba(106,92,242,0.5) 0%, rgba(106,92,242,0) 55%),
+      radial-gradient(140% 140% at 20% 0%, #241b46 0%, #120e22 55%, #08060d 100%);
+  }
+  .fb-card svg{ width:26px; height:26px; margin-bottom:12px; color:#fff; filter:drop-shadow(0 2px 8px rgba(8,6,13,0.45)); }
+  .fb-card strong{ display:block; margin:0 0 6px; font-size:16px; color:#fff; }
+  .fb-card span{ display:block; font-size:13px; line-height:1.5; color:rgba(243,238,249,0.65); }
 
   .card-visual{
     position:relative;
@@ -1017,6 +1145,21 @@
     </div>
   </div>
 
+  <div class="flashback-overlay" id="flashbackOverlay" aria-hidden="true">
+    <button class="flashback-close" id="flashbackClose" type="button" aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="flashback-stage">
+      <div class="flashback-flash" id="flashbackFlash">
+        <p class="flashback-kicker">Todo lo que hacemos</p>
+        <div class="flashback-icon-wrap" id="flashbackIconWrap"></div>
+        <p class="flashback-name" id="flashbackName"></p>
+      </div>
+      <h3 class="flashback-heading" id="flashbackHeading" hidden>Nuestros servicios</h3>
+      <div class="flashback-grid" id="flashbackGrid" hidden></div>
+    </div>
+  </div>
+
   <div class="stage">
     <div class="copy">
       <h1 class="reveal" style="animation-delay:.1s">Ideas que se convierten<br>en <span class="hero-word" id="heroWord">realidad</span>.</h1>
@@ -1139,6 +1282,109 @@
     }
 
     restart();
+  })();
+</script>
+
+<script>
+  (function(){
+    var card = document.querySelector('.card');
+    var overlay = document.getElementById('flashbackOverlay');
+    if (!card || !overlay) return;
+
+    var closeBtn = document.getElementById('flashbackClose');
+    var flash = document.getElementById('flashbackFlash');
+    var iconWrap = document.getElementById('flashbackIconWrap');
+    var nameEl = document.getElementById('flashbackName');
+    var heading = document.getElementById('flashbackHeading');
+    var grid = document.getElementById('flashbackGrid');
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var services = [
+      {
+        title: 'Auditorías', desc: 'Detectamos qué frena tu negocio y cómo arreglarlo.', cls: 'cv-audit',
+        icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>'
+      },
+      {
+        title: 'Marketing', desc: 'Estrategia y contenido que convierte.', cls: 'cv-marketing',
+        icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>'
+      },
+      {
+        title: 'Creación de webs custom', desc: 'Webs a medida, sin plantillas genéricas.', cls: 'cv-webs',
+        icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>'
+      },
+      {
+        title: 'Integración IA', desc: 'Agentes y automatizaciones para tu equipo.', cls: 'cv-ia',
+        icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>'
+      }
+    ];
+
+    // build the settled grid once
+    services.forEach(function(s){
+      var a = document.createElement('div');
+      a.className = 'fb-card ' + s.cls;
+      a.innerHTML = s.icon + '<strong>' + s.title + '</strong><span>' + s.desc + '</span>';
+      grid.appendChild(a);
+    });
+
+    var delays = [90, 90, 100, 110, 130, 150, 180, 210, 250, 300];
+    var flashTimer = null;
+
+    function showStep(idx){
+      var s = services[idx % services.length];
+      iconWrap.innerHTML = s.icon;
+      nameEl.textContent = s.title;
+      flash.classList.remove('pulse');
+      void flash.offsetWidth;
+      flash.classList.add('pulse');
+    }
+
+    function runFlash(onDone){
+      if (reduced){ onDone(); return; }
+      var i = 0;
+      showStep(i);
+      (function step(){
+        i++;
+        if (i < delays.length){
+          flashTimer = setTimeout(function(){ showStep(i); step(); }, delays[i - 1]);
+        } else {
+          flashTimer = setTimeout(onDone, delays[delays.length - 1]);
+        }
+      })();
+    }
+
+    function open(){
+      overlay.classList.add('show');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      flash.hidden = false;
+      flash.style.display = 'flex';
+      heading.hidden = true;
+      heading.classList.remove('show');
+      grid.hidden = true;
+      grid.classList.remove('show');
+
+      runFlash(function(){
+        flash.style.display = 'none';
+        heading.hidden = false;
+        grid.hidden = false;
+        requestAnimationFrame(function(){
+          heading.classList.add('show');
+          grid.classList.add('show');
+        });
+      });
+    }
+
+    function close(){
+      overlay.classList.remove('show');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      clearTimeout(flashTimer);
+    }
+
+    card.addEventListener('click', open);
+    closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', function(e){ if (e.target === overlay) close(); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
   })();
 </script>
 
