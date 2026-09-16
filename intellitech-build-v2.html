@@ -1301,26 +1301,27 @@
 
     var services = [
       {
-        title: 'Auditorías', desc: 'Detectamos qué frena tu negocio y cómo arreglarlo.', cls: 'cv-audit',
+        title: 'Auditorías', desc: 'Detectamos qué frena tu negocio y cómo arreglarlo.', cls: 'cv-audit', href: 'auditoria.html',
         icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>'
       },
       {
-        title: 'Marketing', desc: 'Estrategia y contenido que convierte.', cls: 'cv-marketing',
+        title: 'Marketing', desc: 'Estrategia y contenido que convierte.', cls: 'cv-marketing', href: 'marketing.html',
         icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>'
       },
       {
-        title: 'Creación de webs custom', desc: 'Webs a medida, sin plantillas genéricas.', cls: 'cv-webs',
+        title: 'Creación de webs custom', desc: 'Webs a medida, sin plantillas genéricas.', cls: 'cv-webs', href: 'creacion-webs.html',
         icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>'
       },
       {
-        title: 'Integración IA', desc: 'Agentes y automatizaciones para tu equipo.', cls: 'cv-ia',
+        title: 'Integración IA', desc: 'Agentes y automatizaciones para tu equipo.', cls: 'cv-ia', href: 'integracion-ia.html',
         icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>'
       }
     ];
 
     // build the settled grid once
     services.forEach(function(s){
-      var a = document.createElement('div');
+      var a = document.createElement('a');
+      a.href = s.href;
       a.className = 'fb-card ' + s.cls;
       a.innerHTML = s.icon + '<strong>' + s.title + '</strong><span>' + s.desc + '</span>';
       grid.appendChild(a);
