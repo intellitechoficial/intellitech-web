@@ -1591,3 +1591,61 @@
     }, 3000);
   })();
 </script>
+
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Aviso de cookies">
+  <p>Usamos cookies propias y de terceros para mejorar tu experiencia y analizar el uso de la web. Puedes aceptarlas o rechazar las que no sean necesarias.</p>
+  <div class="cookie-actions">
+    <button class="cookie-btn reject" id="cookieReject" type="button">Rechazar</button>
+    <button class="cookie-btn accept" id="cookieAccept" type="button">Aceptar</button>
+  </div>
+</div>
+<style>
+  .cookie-banner{
+    position:fixed;
+    left:22px; right:22px; bottom:22px;
+    z-index:1000;
+    max-width:640px;
+    margin:0 auto;
+    padding:18px 20px;
+    border-radius:16px;
+    background:rgba(14,11,22,0.92);
+    backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,0.12);
+    box-shadow:0 24px 60px rgba(0,0,0,0.4);
+    display:flex; flex-direction:column; gap:14px;
+    color:#fff;
+    opacity:0; transform:translateY(16px);
+    pointer-events:none;
+    transition:opacity .35s ease, transform .35s ease;
+  }
+  .cookie-banner.show{ opacity:1; transform:translateY(0); pointer-events:auto; }
+  .cookie-banner p{ margin:0; font-size:13.5px; line-height:1.55; color:rgba(255,255,255,0.85); }
+  .cookie-actions{ display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap; }
+  .cookie-btn{
+    padding:9px 18px;
+    border-radius:999px;
+    font-size:13px; font-weight:700;
+    cursor:pointer;
+    border:none;
+  }
+  .cookie-btn.reject{ background:rgba(255,255,255,0.1); color:#fff; }
+  .cookie-btn.reject:hover{ background:rgba(255,255,255,0.18); }
+  .cookie-btn.accept{ background:linear-gradient(160deg, var(--accent-1,#ef3fb0), var(--accent-2,#6a5cf2)); color:#fff; }
+  .cookie-btn.accept:hover{ opacity:.92; }
+  @media (max-width:480px){ .cookie-banner{ left:14px; right:14px; bottom:14px; padding:16px; } .cookie-actions{ justify-content:stretch; } .cookie-btn{ flex:1; } }
+</style>
+<script>
+  (function(){
+    var banner = document.getElementById('cookieBanner');
+    if (!banner) return;
+    var KEY = 'intellitech-cookie-consent';
+    if (localStorage.getItem(KEY)) return;
+    requestAnimationFrame(function(){ banner.classList.add('show'); });
+    function choose(value){
+      try { localStorage.setItem(KEY, value); } catch(e){}
+      banner.classList.remove('show');
+    }
+    document.getElementById('cookieAccept').addEventListener('click', function(){ choose('accepted'); });
+    document.getElementById('cookieReject').addEventListener('click', function(){ choose('rejected'); });
+  })();
+</script>
