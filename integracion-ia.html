@@ -574,38 +574,9 @@
   .stat-box .label{ display:block; margin-top:10px; font-weight:700; font-size:14px; }
   .stat-box .desc{ margin:6px 0 0; font-size:13px; color:var(--muted-dim); line-height:1.5; }
 
-  /* ---------- steps ---------- */
-  .steps-section{ max-width:1180px; margin:0 auto; padding:40px 24px 40px; }
-  @media (min-width:760px){ .steps-section{ padding:50px 44px 50px; } }
-  .steps-section .features-head{ max-width:86ch; }
-  .steps-grid{ margin-top:50px; display:grid; grid-template-columns:1fr; gap:18px; }
-  @media (min-width:820px){ .steps-grid{ grid-template-columns:repeat(3,1fr); } }
-  .step-card{ border-radius:20px; border:1px solid var(--hair); overflow:hidden; background:#fff; }
-  .step-stage{
-    height:170px;
-    background:
-      linear-gradient(var(--hair) 1px, transparent 1px) 0 0/32px 32px,
-      linear-gradient(90deg, var(--hair) 1px, transparent 1px) 0 0/32px 32px,
-      #faf9f7;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .step-mini{ background:#fff; border-radius:12px; padding:12px 14px; box-shadow:0 10px 22px rgba(15,13,22,0.08); font-size:12px; width:76%; }
-  .step-mini .prog-track{ height:5px; border-radius:4px; background:var(--hair); margin-top:8px; overflow:hidden; }
-  .step-mini .prog-fill{ height:100%; width:0%; border-radius:4px; background:linear-gradient(90deg, var(--accent-1), var(--accent-2)); transition:width 1.2s cubic-bezier(.16,1,.3,1); }
-  .step-copy{ padding:22px 22px 26px; }
-  .step-num{
-    display:inline-flex; align-items:center; justify-content:center;
-    width:22px; height:22px; border-radius:6px;
-    background:linear-gradient(160deg, var(--accent-1), var(--accent-2));
-    color:#fff; font-size:12px; font-weight:800;
-    margin-right:8px;
-  }
-  .step-copy h3{ display:inline; font-size:17px; }
-  .step-copy p{ margin:10px 0 0; font-size:13.5px; color:var(--muted); line-height:1.55; }
-
   /* ---------- faq ---------- */
-  .faq-section{ max-width:900px; margin:0 auto; padding:0 24px 70px; }
-  @media (min-width:760px){ .faq-section{ padding:0 44px 90px; } }
+  .faq-section{ max-width:900px; margin:0 auto; padding:50px 24px; }
+  @media (min-width:760px){ .faq-section{ padding:64px 44px; } }
   .faq-section .faq-head{ text-align:center; margin-bottom:44px; }
   .faq-section h2{ margin:16px 0 0; font-size:28px; font-weight:800; }
   details.faq2{ border-top:1px solid var(--hair); padding:18px 4px; }
@@ -914,53 +885,6 @@
       <span class="num">9h</span>
       <span class="label">Ahorradas por persona al mes</span>
       <p class="desc">Las tareas pequeñas que llenan la agenda dejan de acumularse.</p>
-    </div>
-  </div>
-</section>
-
-<section class="steps-section">
-  <div class="features-head reveal">
-    <span class="tag-pill" style="border-color:var(--hair); color:var(--muted);"><span class="dot-spark">✦</span> Cómo empezar</span>
-    <h2>Listo para funcionar en tres pasos</h2>
-    <p class="sub">Sin proyecto eterno de implementación: empiezas a ver resultados desde la primera semana.</p>
-  </div>
-
-  <div class="steps-grid">
-    <div class="step-card reveal">
-      <div class="step-stage">
-        <div class="step-mini">
-          <b>Crear agente</b>
-          <div style="margin-top:6px;color:var(--muted-dim);">Nombre: Agente de soporte</div>
-        </div>
-      </div>
-      <div class="step-copy">
-        <span class="step-num">1</span><h3>Configuración</h3>
-        <p>Conectamos tus datos y herramientas en un solo sitio, sin tocar código.</p>
-      </div>
-    </div>
-    <div class="step-card reveal">
-      <div class="step-stage">
-        <div class="step-mini">
-          <b>Pruebas</b> — <span id="step-progress-label">0%</span> completado
-          <div class="prog-track"><div class="prog-fill" id="step-progress-fill"></div></div>
-        </div>
-      </div>
-      <div class="step-copy">
-        <span class="step-num">2</span><h3>Prueba y ajuste</h3>
-        <p>Revisamos las respuestas del agente contigo antes de que hable con nadie más.</p>
-      </div>
-    </div>
-    <div class="step-card reveal">
-      <div class="step-stage">
-        <div class="step-mini">
-          <b>Agente</b><br>
-          <span style="color:var(--muted-dim);">Pedido creado correctamente ✓</span>
-        </div>
-      </div>
-      <div class="step-copy">
-        <span class="step-num">3</span><h3>Despliegue</h3>
-        <p>El agente entra en producción y sigue aprendiendo con cada caso real.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -1281,23 +1205,6 @@
     if (dash) io.observe(dash);
   })();
 
-  // step 2 progress bar
-  (function(){
-    var fill = document.getElementById('step-progress-fill');
-    var label = document.getElementById('step-progress-label');
-    if (!fill) return;
-    var done = false;
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (e.isIntersecting && !done){
-          done = true;
-          fill.style.width = '68%';
-          if (label) label.textContent = '68%';
-        }
-      });
-    }, { threshold:0.4 });
-    io.observe(fill);
-  })();
 </script>
 
 <div class="chat-widget" id="chatWidget">
