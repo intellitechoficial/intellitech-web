@@ -446,11 +446,13 @@
   .cta svg{ width:16px; height:16px; }
 
   .card{
-    display:none;
-    position:absolute;
+    display:block;
+    position:static;
     z-index:6;
-    right:24px; top:24px;
-    width:290px;
+    width:100%;
+    max-width:360px;
+    margin:26px auto 0;
+    order:2;
     padding:10px;
     border-radius:20px;
     background:rgba(14,11,22,0.55);
@@ -461,7 +463,11 @@
     transition:transform .25s ease, box-shadow .25s ease;
   }
   .card:hover{ transform:translateY(-3px); box-shadow:0 28px 70px rgba(0,0,0,0.5); }
-  @media (min-width:760px){ .card{ display:block; right:44px; top:170px; width:320px; } }
+  footer{ order:3; }
+  @media (min-width:760px){
+    .card{ position:absolute; right:44px; top:170px; width:320px; max-width:none; margin:0; }
+    footer{ order:0; }
+  }
 
   /* ---- Flashback de servicios ---- */
   .flashback-overlay{
@@ -495,43 +501,49 @@
 
   .flashback-stage{ position:relative; width:100%; max-width:720px; }
 
-  .flashback-flash{
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:18px;
-    text-align:center;
+  .flashback-terminal{
+    width:min(680px, 92vw);
+    height:min(58vh, 440px);
+    margin:0 auto;
+    border-radius:20px;
+    background:radial-gradient(140% 140% at 20% 0%, #241b46 0%, #120e22 55%, #08060d 100%);
+    border:1px solid rgba(255,255,255,0.14);
+    box-shadow:0 40px 100px rgba(0,0,0,0.55);
+    padding:18px 22px;
+    display:none;
+    flex-direction:column;
+    gap:14px;
+    overflow:hidden;
+    transform-origin:top left;
+    will-change:transform, opacity;
   }
-  .flashback-icon-wrap{
-    width:76px; height:76px;
-    border-radius:22px;
-    display:flex; align-items:center; justify-content:center;
-    background:linear-gradient(135deg, var(--accent-1), var(--accent-2));
-    box-shadow:0 12px 40px rgba(239,63,176,0.35);
-    transform:scale(1);
-  }
-  .flashback-icon-wrap svg{ width:36px; height:36px; color:#fff; }
-  .flashback-flash.pulse .flashback-icon-wrap{ animation:fbPop .18s ease; }
-  @keyframes fbPop{ 0%{ transform:scale(0.75); opacity:.4; } 60%{ transform:scale(1.08); opacity:1; } 100%{ transform:scale(1); } }
-  .flashback-kicker{
+  .flashback-terminal:not([hidden]){ display:flex; }
+  .fbt-head{ display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
+  .fbt-tag{
     font-family:'JetBrains Mono', ui-monospace, monospace;
-    font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
-    color:rgba(243,238,249,0.45);
+    font-size:11px; letter-spacing:0.1em; color:rgba(243,238,249,0.4);
   }
-  .flashback-name{
+  .fbt-code{
     margin:0;
-    font-family:'Work Sans', sans-serif;
-    font-weight:800;
-    font-size:clamp(28px,5vw,44px);
-    color:#fff;
-    letter-spacing:-0.01em;
+    flex:1;
+    overflow:auto;
+    font-family:'JetBrains Mono', ui-monospace, monospace;
+    font-size:clamp(12.5px, 1.6vw, 15px);
+    line-height:1.7;
+    color:#d7d2e6;
+    white-space:pre-wrap;
+    word-break:break-word;
   }
+  .fbt-code .term-cursor{ background:var(--accent-1); }
 
   .flashback-grid{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:14px;
+    display:none;
+    grid-template-columns:repeat(2, minmax(150px, 190px));
+    gap:16px;
+    justify-content:center;
     opacity:0;
   }
-  @media (min-width:640px){ .flashback-grid{ grid-template-columns:1fr 1fr; } }
+  .flashback-grid:not([hidden]){ display:grid; }
   .flashback-grid.show{ opacity:1; }
 
   .flashback-heading{
@@ -547,46 +559,18 @@
   }
   .flashback-heading.show{ opacity:1; transform:translateY(0); }
 
-  .fb-card{
-    position:relative;
-    padding:22px;
-    border-radius:18px;
-    border:1px solid rgba(255,255,255,0.12);
-    overflow:hidden;
-    text-decoration:none;
+  .flashback-grid .book{
+    width:100%; height:auto; aspect-ratio:172/238;
     opacity:0;
     transform:translateY(14px) scale(.97);
     transition:opacity .4s ease, transform .4s ease;
   }
-  .flashback-grid.show .fb-card{ opacity:1; transform:translateY(0) scale(1); }
-  .flashback-grid.show .fb-card:nth-child(1){ transition-delay:.05s; }
-  .flashback-grid.show .fb-card:nth-child(2){ transition-delay:.13s; }
-  .flashback-grid.show .fb-card:nth-child(3){ transition-delay:.21s; }
-  .flashback-grid.show .fb-card:nth-child(4){ transition-delay:.29s; }
-  .fb-card:hover{ border-color:rgba(255,255,255,0.28); }
-  .fb-card.cv-audit{
-    background-image:
-      radial-gradient(115% 95% at 12% 8%, rgba(106,92,242,0.55) 0%, rgba(106,92,242,0) 55%),
-      radial-gradient(140% 140% at 20% 0%, #241b46 0%, #120e22 55%, #08060d 100%);
-  }
-  .fb-card.cv-webs{
-    background-image:
-      radial-gradient(115% 95% at 88% 8%, rgba(239,63,176,0.5) 0%, rgba(239,63,176,0) 55%),
-      radial-gradient(140% 140% at 20% 0%, #241b46 0%, #120e22 55%, #08060d 100%);
-  }
-  .fb-card.cv-ia{
-    background-image:
-      linear-gradient(135deg, rgba(239,63,176,0.55) 0%, rgba(106,92,242,0.4) 45%, rgba(18,14,34,0) 72%),
-      radial-gradient(140% 140% at 20% 0%, #241b46 0%, #120e22 55%, #08060d 100%);
-  }
-  .fb-card.cv-marketing{
-    background-image:
-      radial-gradient(115% 95% at 82% 92%, rgba(106,92,242,0.5) 0%, rgba(106,92,242,0) 55%),
-      radial-gradient(140% 140% at 20% 0%, #241b46 0%, #120e22 55%, #08060d 100%);
-  }
-  .fb-card svg{ width:26px; height:26px; margin-bottom:12px; color:#fff; filter:drop-shadow(0 2px 8px rgba(8,6,13,0.45)); }
-  .fb-card strong{ display:block; margin:0 0 6px; font-size:16px; color:#fff; }
-  .fb-card span{ display:block; font-size:13px; line-height:1.5; color:rgba(243,238,249,0.65); }
+  .flashback-grid.show .book{ opacity:1; transform:translateY(0) scale(1); }
+  .flashback-grid.show .book:nth-child(1){ transition-delay:.05s; }
+  .flashback-grid.show .book:nth-child(2){ transition-delay:.13s; }
+  .flashback-grid.show .book:nth-child(3){ transition-delay:.21s; }
+  .flashback-grid.show .book:nth-child(4){ transition-delay:.29s; }
+  @media (max-width:520px){ .flashback-grid{ grid-template-columns:repeat(2, minmax(120px, 1fr)); gap:10px; } }
 
   .card-visual{
     position:relative;
@@ -1149,10 +1133,12 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
     <div class="flashback-stage">
-      <div class="flashback-flash" id="flashbackFlash">
-        <p class="flashback-kicker">Todo lo que hacemos</p>
-        <div class="flashback-icon-wrap" id="flashbackIconWrap"></div>
-        <p class="flashback-name" id="flashbackName"></p>
+      <div class="flashback-terminal" id="flashbackTerminal">
+        <div class="fbt-head">
+          <div class="term-dots"><span></span><span></span><span></span></div>
+          <span class="fbt-tag">agent.run()</span>
+        </div>
+        <pre class="fbt-code" id="flashbackCode"></pre>
       </div>
       <h3 class="flashback-heading" id="flashbackHeading" hidden>Nuestros servicios</h3>
       <div class="flashback-grid" id="flashbackGrid" hidden></div>
@@ -1291,63 +1277,53 @@
     if (!card || !overlay) return;
 
     var closeBtn = document.getElementById('flashbackClose');
-    var flash = document.getElementById('flashbackFlash');
-    var iconWrap = document.getElementById('flashbackIconWrap');
-    var nameEl = document.getElementById('flashbackName');
+    var terminal = document.getElementById('flashbackTerminal');
+    var codeEl = document.getElementById('flashbackCode');
     var heading = document.getElementById('flashbackHeading');
     var grid = document.getElementById('flashbackGrid');
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    var services = [
-      {
-        title: 'Auditorías', desc: 'Detectamos qué frena tu negocio y cómo arreglarlo.', cls: 'cv-audit', href: 'auditoria.html',
-        icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>'
-      },
-      {
-        title: 'Marketing', desc: 'Estrategia y contenido que convierte.', cls: 'cv-marketing', href: 'marketing.html',
-        icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>'
-      },
-      {
-        title: 'Creación de webs custom', desc: 'Webs a medida, sin plantillas genéricas.', cls: 'cv-webs', href: 'creacion-webs.html',
-        icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>'
-      },
-      {
-        title: 'Integración IA', desc: 'Agentes y automatizaciones para tu equipo.', cls: 'cv-ia', href: 'integracion-ia.html',
-        icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>'
-      }
-    ];
-
-    // build the settled grid once
-    services.forEach(function(s){
-      var a = document.createElement('a');
-      a.href = s.href;
-      a.className = 'fb-card ' + s.cls;
-      a.innerHTML = s.icon + '<strong>' + s.title + '</strong><span>' + s.desc + '</span>';
-      grid.appendChild(a);
+    // build the settled grid once, reusing the real service cards from the page
+    document.querySelectorAll('.service-books .book').forEach(function(book){
+      grid.appendChild(book.cloneNode(true));
     });
 
-    var delays = [90, 90, 100, 110, 130, 150, 180, 210, 250, 300];
-    var flashTimer = null;
+    var codeLines = [
+      '$ intellitech run --services',
+      '',
+      '> iniciando agente...',
+      '> cargando: reasoning, tools, memory',
+      '',
+      'ejecutando servicios:',
+      '  [1/4] auditoria.run()        ✓',
+      '  [2/4] marketing.run()        ✓',
+      '  [3/4] creacion-webs.run()    ✓',
+      '  [4/4] integracion-ia.run()   ✓',
+      '',
+      '✔ 4 servicios listos'
+    ];
+    var codeText = codeLines.join('\n');
 
-    function showStep(idx){
-      var s = services[idx % services.length];
-      iconWrap.innerHTML = s.icon;
-      nameEl.textContent = s.title;
-      flash.classList.remove('pulse');
-      void flash.offsetWidth;
-      flash.classList.add('pulse');
+    var typeTimer = null;
+    var revealTimer = null;
+
+    function setCode(text){
+      codeEl.innerHTML = '';
+      codeEl.appendChild(document.createTextNode(text));
+      var cursor = document.createElement('span');
+      cursor.className = 'term-cursor';
+      codeEl.appendChild(cursor);
     }
 
-    function runFlash(onDone){
-      if (reduced){ onDone(); return; }
+    function typeCode(onDone){
       var i = 0;
-      showStep(i);
       (function step(){
         i++;
-        if (i < delays.length){
-          flashTimer = setTimeout(function(){ showStep(i); step(); }, delays[i - 1]);
+        setCode(codeText.slice(0, i));
+        if (i < codeText.length){
+          typeTimer = setTimeout(step, 10 + Math.random() * 18);
         } else {
-          flashTimer = setTimeout(onDone, delays[delays.length - 1]);
+          revealTimer = setTimeout(onDone, 550);
         }
       })();
     }
@@ -1356,20 +1332,58 @@
       overlay.classList.add('show');
       overlay.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
-      flash.hidden = false;
-      flash.style.display = 'flex';
+
       heading.hidden = true;
       heading.classList.remove('show');
       grid.hidden = true;
       grid.classList.remove('show');
+      terminal.hidden = false;
+      terminal.style.opacity = '1';
+      setCode('');
 
-      runFlash(function(){
-        flash.style.display = 'none';
+      if (reduced){
         heading.hidden = false;
         grid.hidden = false;
-        requestAnimationFrame(function(){
-          heading.classList.add('show');
-          grid.classList.add('show');
+        heading.classList.add('show');
+        grid.classList.add('show');
+        terminal.hidden = true;
+        return;
+      }
+
+      var cardRect = card.getBoundingClientRect();
+      var finalRect = terminal.getBoundingClientRect();
+      var scaleX = cardRect.width / finalRect.width;
+      var scaleY = cardRect.height / finalRect.height;
+      var originX = cardRect.left - finalRect.left;
+      var originY = cardRect.top - finalRect.top;
+
+      terminal.style.transition = 'none';
+      terminal.style.transform = 'translate(' + originX + 'px,' + originY + 'px) scale(' + scaleX + ',' + scaleY + ')';
+      void terminal.offsetWidth;
+
+      requestAnimationFrame(function(){
+        terminal.style.transition = 'transform .55s cubic-bezier(.16,1,.3,1)';
+        terminal.style.transform = 'translate(0,0) scale(1,1)';
+      });
+
+      terminal.addEventListener('transitionend', function handler(e){
+        if (e.propertyName !== 'transform') return;
+        terminal.removeEventListener('transitionend', handler);
+        if (!overlay.classList.contains('show')) return;
+        typeCode(function(){
+          if (!overlay.classList.contains('show')) return;
+          terminal.style.transition = 'opacity .3s ease';
+          terminal.style.opacity = '0';
+          setTimeout(function(){
+            if (!overlay.classList.contains('show')) return;
+            terminal.hidden = true;
+            heading.hidden = false;
+            grid.hidden = false;
+            requestAnimationFrame(function(){
+              heading.classList.add('show');
+              grid.classList.add('show');
+            });
+          }, 300);
         });
       });
     }
@@ -1378,7 +1392,12 @@
       overlay.classList.remove('show');
       overlay.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
-      clearTimeout(flashTimer);
+      clearTimeout(typeTimer);
+      clearTimeout(revealTimer);
+      terminal.style.transition = 'none';
+      terminal.style.transform = 'none';
+      terminal.style.opacity = '1';
+      terminal.hidden = false;
     }
 
     card.addEventListener('click', open);
