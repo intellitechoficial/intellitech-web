@@ -1593,7 +1593,7 @@
 </script>
 
 <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Aviso de cookies">
-  <p>Usamos cookies propias y de terceros para mejorar tu experiencia y analizar el uso de la web. Puedes aceptarlas o rechazar las que no sean necesarias.</p>
+  <p>Usamos cookies propias para mejorar tu experiencia. Puedes aceptarlas o rechazarlas. Más info en nuestra <a href="privacidad.html" style="color:#fff; text-decoration:underline;">política de privacidad y cookies</a>.</p>
   <div class="cookie-actions">
     <button class="cookie-btn reject" id="cookieReject" type="button">Rechazar</button>
     <button class="cookie-btn accept" id="cookieAccept" type="button">Aceptar</button>
@@ -1638,11 +1638,22 @@
   (function(){
     var banner = document.getElementById('cookieBanner');
     if (!banner) return;
-    var KEY = 'intellitech-cookie-consent';
-    if (localStorage.getItem(KEY)) return;
+    var KEY = 'intellitech_cookie_consent';
+    var MAX_AGE_DAYS = 180;
+
+    function getCookie(name){
+      var match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+      return match ? decodeURIComponent(match[1]) : null;
+    }
+    function setCookie(name, value, days){
+      var expires = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toUTCString();
+      document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/; SameSite=Lax';
+    }
+
+    if (getCookie(KEY)) return;
     requestAnimationFrame(function(){ banner.classList.add('show'); });
     function choose(value){
-      try { localStorage.setItem(KEY, value); } catch(e){}
+      try { setCookie(KEY, value, MAX_AGE_DAYS); } catch(e){}
       banner.classList.remove('show');
     }
     document.getElementById('cookieAccept').addEventListener('click', function(){ choose('accepted'); });
