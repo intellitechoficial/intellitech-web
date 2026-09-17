@@ -446,13 +446,11 @@
   .cta svg{ width:16px; height:16px; }
 
   .card{
-    display:block;
-    position:static;
+    display:none;
+    position:absolute;
     z-index:6;
-    width:100%;
-    max-width:360px;
-    margin:26px auto 0;
-    order:2;
+    right:24px; top:24px;
+    width:290px;
     padding:10px;
     border-radius:20px;
     background:rgba(14,11,22,0.55);
@@ -463,11 +461,7 @@
     transition:transform .25s ease, box-shadow .25s ease;
   }
   .card:hover{ transform:translateY(-3px); box-shadow:0 28px 70px rgba(0,0,0,0.5); }
-  footer{ order:3; }
-  @media (min-width:760px){
-    .card{ position:absolute; right:44px; top:170px; width:320px; max-width:none; margin:0; }
-    footer{ order:0; }
-  }
+  @media (min-width:760px){ .card{ display:block; right:44px; top:170px; width:320px; } }
 
   /* ---- Flashback de servicios ---- */
   .flashback-overlay{
