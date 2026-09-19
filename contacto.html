@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contacto — IntelliTech</title>
+<script type="importmap">
+{
+  "imports": {
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2.45.4"
+  }
+}
+</script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,500;0,700;0,800;1,700;1,800&family=JetBrains+Mono:wght@400;500&display=swap');
 
@@ -292,7 +299,14 @@
   <footer>IntelliTech — Ideas that become business.</footer>
 </div>
 
-<script>
+<script type="module">
+  import { createClient } from "@supabase/supabase-js";
+
+  var supabase = createClient(
+    "https://timothrmjaaozqcafibh.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRpbW90aHJtamFhb3pxY2FmaWJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk0NDYyOTcsImV4cCI6MjEwNTAyMjI5N30._HSVoC-QIiz4Wz6_ykQF5JGqtgY2vrqQLJ7KnDyuTbc"
+  );
+
   var SERVICES = [
     {
       value:'auditoria',
@@ -366,9 +380,39 @@
     });
   });
 
-  document.getElementById('contact-form').addEventListener('submit', function(e){
+  document.getElementById('contact-form').addEventListener('submit', async function(e){
     e.preventDefault();
-    this.reset();
+    var form = this;
+    var btn = form.querySelector('.submit-btn');
+    var btnLabel = btn.firstChild.textContent;
+    btn.disabled = true;
+    btn.firstChild.textContent = 'Enviando…';
+
+    var serviceValue = document.getElementById('service').value;
+    var serviceName = serviceMap[serviceValue] ? serviceMap[serviceValue].name : serviceValue;
+
+    var payload = {
+      form: 'Contacto general',
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value || null,
+      message: document.getElementById('message').value,
+      service: serviceName || null,
+      prefer_whatsapp: document.getElementById('prefer-whatsapp').checked
+    };
+
+    var error = (await supabase.from('form_submissions').insert(payload)).error;
+
+    btn.disabled = false;
+    btn.firstChild.textContent = btnLabel;
+
+    if (error) {
+      console.error('Error al enviar el formulario', error);
+      alert('No hemos podido enviar tu mensaje. Inténtalo de nuevo en unos minutos.');
+      return;
+    }
+
+    form.reset();
     document.getElementById('file-list').innerHTML = '';
     document.getElementById('service-hint').classList.remove('show');
     document.getElementById('confirm-msg').classList.add('show');
